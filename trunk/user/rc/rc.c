@@ -42,6 +42,7 @@
 #include "rc.h"
 #include "gpio_pins.h"
 #include "switch.h"
+#include <ralink_priv.h>
 
 extern struct nvram_pair router_defaults[];
 
@@ -56,6 +57,14 @@ nvram_restore_defaults(void)
 {
 	struct nvram_pair *np;
 	int restore_defaults;
+	char tmp[32] = {0};
+	unsigned char buffer[2] = {0};
+	char lan_mac[] = "FFFF";
+
+	int i_offset = get_wired_mac_e2p_offset(0) + 4;
+	if (flash_mtd_read(MTD_PART_NAME_FACTORY, i_offset, buffer, 2) == 0) {
+		sprintf(lan_mac, "%02X%02X", buffer[0] & 0xff, buffer[1] & 0xff);
+	}
 
 	/* Restore defaults if told to or OS has changed */
 	restore_defaults = !nvram_match("restore_defaults", "0");
@@ -72,7 +81,12 @@ nvram_restore_defaults(void)
 	/* Restore defaults */
 	for (np = router_defaults; np->name; np++) {
 		if (restore_defaults || !nvram_get(np->name)) {
-			nvram_set(np->name, np->value);
+			if (strstr(np->name,"wl_ssid") || strstr(np->name,"rt_ssid") || !strcmp(np->name,"wl_guest_ssid") || !strcmp(np->name,"rt_guest_ssid")){
+				sprintf(tmp, np->value, lan_mac);
+				nvram_set(np->name, tmp);
+			} else {
+				nvram_set(np->name, np->value);
+			}
 		}
 	}
 
@@ -100,6 +114,10 @@ load_wireless_modules(void)
 
 #if defined (USE_MT76X2_AP)
 	module_smart_load("mt76x2_ap", NULL);
+#endif
+
+#if defined (USE_MT7615_AP)
+	module_smart_load("mt_7615e", NULL);
 #endif
 
 #if defined (USE_RT3090_AP)
@@ -181,6 +199,17 @@ load_crypto_modules(void)
 	/* start cryptodev-linux */
 	module_smart_load("cryptodev", NULL);
 #endif
+}
+#endif
+
+#if defined (USE_IPSET)
+static void
+load_ipset_modules(void)
+{
+	module_smart_load("xt_set", NULL);
+	module_smart_load("ip_set_hash_ip", NULL);
+	module_smart_load("ip_set_hash_mac", NULL);
+	module_smart_load("ip_set_hash_net", NULL);
 }
 #endif
 
@@ -436,8 +465,8 @@ nvram_convert_misc_values(void)
 	if (strlen(nvram_wlan_get(1, "gmode")) < 1)
 		nvram_wlan_set_int(1, "gmode", 4); // a/n/ac Mixed
 
-	if (nvram_wlan_get_int(1, "HT_BW") > 2)
-		nvram_wlan_set_int(1, "HT_BW", 2);
+	if (nvram_wlan_get_int(1, "HT_BW") > 3)
+		nvram_wlan_set_int(1, "HT_BW", 3);
 #else
 	if (strlen(nvram_wlan_get(1, "gmode")) < 1)
 		nvram_wlan_set_int(1, "gmode", 2); // a/n Mixed
@@ -763,9 +792,9 @@ LED_CONTROL(int gpio_led, int flag)
 #endif
 #if defined (CONFIG_RALINK_MT7628) && (BOARD_GPIO_LED_WIFI == 44)
 	if (gpio_led == BOARD_GPIO_LED_WIFI) {
-		cpu_gpio_mode_set_bit(32, (flag == LED_OFF) ? 1 : 0); // change GPIO Mode for WLED_AN
-		cpu_gpio_mode_set_bit(48, (flag == LED_OFF) ? 1 : 0); // change GPIO Mode for WLED_KN
-		cpu_gpio_set_pin(gpio_led, LED_OFF); // always set GPIO to high
+        //cpu_gpio_mode_set_bit(32, (flag == LED_OFF) ? 1 : 0); // change GPIO Mode for WLED_AN
+        //cpu_gpio_mode_set_bit(48, (flag == LED_OFF) ? 1 : 0); // change GPIO Mode for WLED_KN
+        cpu_gpio_set_pin(gpio_led, flag); // always set GPIO to high
 	} else
 #endif
 #endif
@@ -775,6 +804,17 @@ LED_CONTROL(int gpio_led, int flag)
 		
 		cpu_gpio_set_pin(gpio_led, flag);
 	}
+}
+
+int
+init_crontab(void)
+{
+	int ret = 0; //no change
+#if defined (APP_SHADOWSOCKS)
+	ret |= system("/sbin/check_crontab.sh 0 8 a/10 a a update_chnroute.sh");
+	ret |= system("/sbin/check_crontab.sh 0 7 a/10 a a update_gfwlist.sh");
+#endif
+	return ret;
 }
 
 void 
@@ -818,6 +858,9 @@ init_router(void)
 #endif
 #if defined (USE_MTK_AES)
 	load_crypto_modules();
+#endif
+#if defined (USE_IPSET)
+	load_ipset_modules();
 #endif
 
 	recreate_passwd_unix(1);
@@ -867,6 +910,16 @@ init_router(void)
 
 	start_rwfs_optware();
 
+	// system ready
+	system("sync && echo 3 > /proc/sys/vm/drop_caches");
+
+#if defined(APP_NAPT66)
+	start_napt66();
+#endif
+	if (init_crontab()) {
+		write_storage_to_mtd();
+		restart_crond();
+	}
 	// system ready
 	system("/etc/storage/started_script.sh &");
 }
@@ -1181,6 +1234,30 @@ handle_notifications(void)
 		else if (strcmp(entry->d_name, RCN_RESTART_SSHD) == 0)
 		{
 			restart_sshd();
+		}
+#endif
+#if defined(APP_SHADOWSOCKS)
+		else if (strcmp(entry->d_name, RCN_RESTART_SHADOWSOCKS) == 0)
+		{
+			restart_ss();
+		}
+		else if (strcmp(entry->d_name, RCN_RESTART_SS_TUNNEL) == 0)
+		{
+			restart_ss_tunnel();
+		}
+		else if (strcmp(entry->d_name, RCN_RESTART_CHNROUTE_UPD) == 0)
+		{
+			update_chnroute();
+		}
+		else if (strcmp(entry->d_name, RCN_RESTART_GFWLIST_UPD) == 0)
+		{
+			update_gfwlist();
+		}
+#endif
+#if defined(APP_DNSFORWARDER)
+		else if (strcmp(entry->d_name, RCN_RESTART_DNSFORWARDER) == 0)
+		{
+			restart_dnsforwarder();
 		}
 #endif
 #if defined(APP_SMBD) || defined(APP_NMBD)

@@ -177,21 +177,21 @@ function showSystemInfo(cpu_now,force){
 	$j("#mem_info").html(bytesToSize(sysinfo.ram.free*1024, 2) + " / " + bytesToSize(sysinfo.ram.total*1024, 2));
 	$j("#uptime_info").html(sysinfo.uptime.days + "<#Day#>".substring(0,1) + " " + h+"<#Hour#>".substring(0,1) + " " + m+"<#Minute#>".substring(0,1));
 
-	$j("#cpu_usage tr:nth-child(1) td:first").html('busy: '+cpu_now.busy+'%');
-	$j("#cpu_usage tr:nth-child(2) td:first").html('user: '+cpu_now.user+'%');
-	$j("#cpu_usage tr:nth-child(2) td:last").html('system: '+cpu_now.system+'%');
-	$j("#cpu_usage tr:nth-child(3) td:first").html('sirq: '+cpu_now.sirq+'%');
-	$j("#cpu_usage tr:nth-child(3) td:last").html('irq: '+cpu_now.irq+'%');
-	$j("#cpu_usage tr:nth-child(4) td:first").html('idle: '+cpu_now.idle+'%');
-	$j("#cpu_usage tr:nth-child(4) td:last").html('nice: '+cpu_now.nice+'%');
+	$j("#cpu_usage tr:nth-child(1) td:first").html('<#busy#>: '+cpu_now.busy+'%');
+	$j("#cpu_usage tr:nth-child(2) td:first").html('<#user#>: '+cpu_now.user+'%');
+	$j("#cpu_usage tr:nth-child(2) td:last").html('<#system#>: '+cpu_now.system+'%');
+	$j("#cpu_usage tr:nth-child(3) td:first").html('<#sirq#>: '+cpu_now.sirq+'%');
+	$j("#cpu_usage tr:nth-child(3) td:last").html('<#irq#>: '+cpu_now.irq+'%');
+	$j("#cpu_usage tr:nth-child(4) td:first").html('<#idle#>: '+cpu_now.idle+'%');
+	$j("#cpu_usage tr:nth-child(4) td:last").html('<#nice#>: '+cpu_now.nice+'%');
 
-	$j("#mem_usage tr:nth-child(1) td:first").html('total: '+bytesToSize(sysinfo.ram.total*1024, 2));
-	$j("#mem_usage tr:nth-child(2) td:first").html('free: '+bytesToSize(sysinfo.ram.free*1024, 2));
-	$j("#mem_usage tr:nth-child(2) td:last").html('used: '+bytesToSize(sysinfo.ram.used*1024, 2));
-	$j("#mem_usage tr:nth-child(3) td:first").html('cached: '+bytesToSize(sysinfo.ram.cached*1024, 2));
-	$j("#mem_usage tr:nth-child(3) td:last").html('buffers: '+bytesToSize(sysinfo.ram.buffers*1024, 2));
-	$j("#mem_usage tr:nth-child(4) td:first").html('swap: '+bytesToSize(sysinfo.swap.total*1024, 2));
-	$j("#mem_usage tr:nth-child(4) td:last").html('swap used: '+bytesToSize(sysinfo.swap.used*1024, 2));
+	$j("#mem_usage tr:nth-child(1) td:first").html('<#total#>: '+bytesToSize(sysinfo.ram.total*1024, 2));
+	$j("#mem_usage tr:nth-child(2) td:first").html('<#free#>: '+bytesToSize(sysinfo.ram.free*1024, 2));
+	$j("#mem_usage tr:nth-child(2) td:last").html('<#used#>: '+bytesToSize(sysinfo.ram.used*1024, 2));
+	$j("#mem_usage tr:nth-child(3) td:first").html('<#cached#>: '+bytesToSize(sysinfo.ram.cached*1024, 2));
+	$j("#mem_usage tr:nth-child(3) td:last").html('<#buffers#>: '+bytesToSize(sysinfo.ram.buffers*1024, 2));
+	$j("#mem_usage tr:nth-child(4) td:first").html('<#swap#>: '+bytesToSize(sysinfo.swap.total*1024, 2));
+	$j("#mem_usage tr:nth-child(4) td:last").html('<#swap used#>: '+bytesToSize(sysinfo.swap.used*1024, 2));
 
 	if(parseInt(sysinfo.wifi2.state) > 0)
 		$j('#wifi2_b').addClass('btn-info');
@@ -234,6 +234,10 @@ function show_banner(L3){
 	if (!support_5g_radio()) {
 		style_2g = 'width:114px;';
 		style_5g = 'width:21px;display:none;';
+	}
+	var title_2g = '"2.4G"'
+	if (!support_2g_radio()) {
+		title_2g = '"N/A" disabled';
 	}
 
 	// log panel
@@ -293,7 +297,7 @@ function show_banner(L3){
 	bc += '<table class="table table-condensed" width="100%" style="margin-bottom: 0px;">\n';
 	bc += '  <tr>\n';
 	bc += '    <td width="43%" style="text-align:left; border: 0 none;"></td>\n';
-	bc += '    <td style="border: 0 none; text-align:right;"><a class="label" href="javascript:void(0)" onclick="hide_adv_info();">hide</a></td>\n';
+	bc += '    <td style="border: 0 none; text-align:right;"><a class="label" href="javascript:void(0)" onclick="hide_adv_info();"><#hide#></a></td>\n';
 	bc += '  </tr>\n';
 	bc += '  <tr>\n';
 	bc += '    <td style="height: 20px;"></td>\n';
@@ -314,7 +318,7 @@ function show_banner(L3){
 	bc += '<table class="table table-condensed" width="100%" style="margin-bottom: 0px;">\n';
 	bc += '  <tr>\n';
 	bc += '    <td width="43%" style="text-align:left; border: 0 none;"></td>\n';
-	bc += '    <td style="border: 0 none; text-align:right;"><a class="label" href="javascript:void(0)" onclick="hide_adv_info();">hide</a></td>\n';
+	bc += '    <td style="border: 0 none; text-align:right;"><a class="label" href="javascript:void(0)" onclick="hide_adv_info();"><#hide#></a></td>\n';
 	bc += '  </tr>\n';
 	bc += '  <tr>\n';
 	bc += '    <td style="height: 20px;"></td>\n';
@@ -342,11 +346,11 @@ function show_banner(L3){
 	bc += '<table class="table table-condensed" style="margin-bottom: 0px">\n';
 	bc += '  <tr>\n';
 	bc += '    <td width="50%" style="border: 0 none;"><#menu5_1#>:</td>\n';
-	bc += '    <td style="border: 0 none; min-width: 115px;"><div class="form-inline"><input type="button" id="wifi2_b" class="btn btn-mini '+enabled2Gclass+'" style="'+style_2g+'" value="2.4GHz" onclick="go_setting(2);">&nbsp;<input type="button" id="wifi5_b" style="'+style_5g+'" class="btn btn-mini '+enabled5Gclass+'" value="5GHz" onclick="go_setting(5);"></div></td>\n';
+	bc += '    <td style="border: 0 none; min-width: 115px;"><div class="form-inline"><input type="button" id="wifi2_b" class="btn btn-mini '+enabled2Gclass+'" style="'+style_2g+'" value='+title_2g+' onclick="go_setting(2);">&nbsp;<input type="button" id="wifi5_b" style="'+style_5g+'" class="btn btn-mini '+enabled5Gclass+'" value="5G" onclick="go_setting(5);"></div></td>\n';
 	bc += '  </tr>\n';
 	bc += '  <tr>\n';
 	bc += '    <td><#menu5_1_2#>:</td>\n';
-	bc += '    <td><div class="form-inline"><input type="button" id="wifi2_b_g" class="btn btn-mini '+enabledGuest2Gclass+'" style="'+style_2g+'" value="2.4GHz" onclick="go_wguest(2);">&nbsp;<input type="button" id="wifi5_b_g" style="'+style_5g+'" class="btn btn-mini '+enabledGuest5Gclass+'" value="5GHz" onclick="go_wguest(5);"></div></td>\n';
+	bc += '    <td><div class="form-inline"><input type="button" id="wifi2_b_g" class="btn btn-mini '+enabledGuest2Gclass+'" style="'+style_2g+'" value='+title_2g+' onclick="go_wguest(2);">&nbsp;<input type="button" id="wifi5_b_g" style="'+style_5g+'" class="btn btn-mini '+enabledGuest5Gclass+'" value="5G" onclick="go_wguest(5);"></div></td>\n';
 	bc += '  </tr>\n';
 	bc += '  <tr>\n';
 	bc += '    <td><#General_x_FirmwareVersion_itemname#></td>\n';
@@ -354,7 +358,7 @@ function show_banner(L3){
 	bc += '  </tr>\n';
 	bc += '  <tr>\n';
 	bc += '    <td><button type="button" id="commit_btn" class="btn btn-mini" style="width: 114px; height: 21px; outline:0; '+enabledBtnCommit+'" onclick="commit();"><i class="icon icon-fire"></i>&nbsp;<#CTL_Commit#></button></td>\n';
-	bc += '    <td><button type="button" id="logout_btn" class="btn btn-mini" style="width: 114px; height: 21px; outline:0;" onclick="logout();"><#t1Logout#></button> <button type="button" id="reboto_btn" class="btn btn-mini" style="height: 21px; outline:0;" title="<#BTN_REBOOT#>" onclick="reboot();"><i class="icon icon-off"></i></button></td>\n';
+	bc += '    <td><button type="button" id="logout_btn" class="btn btn-mini" style="width: 114px; height: 21px; outline:0;" onclick="logout();"><#t1Logout#></button>&nbsp;<button type="button" id="reboto_btn" class="btn btn-mini" style="height: 21px; outline:0;" title="<#BTN_REBOOT#>" onclick="reboot();"><i class="icon icon-off"></i></button></td>\n';
 	bc += '  </tr>\n';
 	bc += '</table>\n';
 	bc += '</div>\n';
@@ -372,10 +376,10 @@ function show_banner(L3){
 	show_top_status();
 }
 
-var tabtitle = new Array(10);
+var tabtitle = new Array(11);
 tabtitle[0] = new Array("", "<#menu5_1_1#>", "<#menu5_1_2#>", "<#menu5_1_3#>", "<#menu5_1_4#>", "<#menu5_1_5#>", "<#menu5_1_6#>");
 tabtitle[1] = new Array("", "<#menu5_1_1#>", "<#menu5_1_2#>", "<#menu5_1_3#>", "<#menu5_1_4#>", "<#menu5_1_5#>", "<#menu5_1_6#>");
-tabtitle[2] = new Array("", "<#menu5_2_1#>", "<#menu5_2_2#>", "<#menu5_2_3#>", "<#menu5_2_4#>", "<#menu5_2_5#>", "Wake-on-LAN");
+tabtitle[2] = new Array("", "<#menu5_2_1#>", "<#menu5_2_2#>", "<#menu5_2_3#>", "<#menu5_2_4#>", "<#menu5_2_5#>", "<#menu5_2_6#>");
 tabtitle[3] = new Array("", "<#menu5_3_1#>", "<#menu5_3_3#>", "<#menu5_3_4#>", "<#menu5_3_5#>", "<#menu5_3_6#>");
 tabtitle[4] = new Array("", "<#menu5_5_1#>", "<#menu5_5_5#>", "<#menu5_5_2#>", "<#menu5_5_3#>", "<#menu5_5_4#>");
 tabtitle[5] = new Array("", "<#menu5_4_3#>", "<#menu5_4_1#>", "<#menu5_4_2#>", "<#menu5_4_4#>", "<#menu5_4_5#>");
@@ -383,9 +387,14 @@ tabtitle[6] = new Array("", "<#menu5_6_2#>", "<#menu5_6_5#>", "<#menu5_6_1#>", "
 tabtitle[7] = new Array("", "<#menu5_10_1#>", "<#menu5_10_2#>", "<#menu5_10_3#>");
 tabtitle[8] = new Array("", "<#menu5_11#>", "<#menu5_12#>", "WAN", "", "", "", "", "", "", "");
 tabtitle[9] = new Array("", "<#menu5_7_2#>", "<#menu5_7_3#>", "<#menu5_7_5#>", "<#menu5_7_6#>", "<#menu5_7_8#>");
+tabtitle[10] = new Array("", "<#menu5_15#>", "<#menu5_16#>", "<#menu5_16_20#>");
+
+if (found_app_dnsforwarder()){
+	tabtitle[10] = new Array("", "<#menu5_15#>", "<#menu5_16#>", "<#menu5_16_20#>");
+}
 
 //Level 3 Tab title
-var tablink = new Array(10);
+var tablink = new Array(11);
 tablink[0] = new Array("", "Advanced_Wireless2g_Content.asp", "Advanced_WGuest2g_Content.asp", "Advanced_WMode2g_Content.asp", "Advanced_ACL2g_Content.asp", "Advanced_WSecurity2g_Content.asp", "Advanced_WAdvanced2g_Content.asp");
 tablink[1] = new Array("", "Advanced_Wireless_Content.asp", "Advanced_WGuest_Content.asp", "Advanced_WMode_Content.asp", "Advanced_ACL_Content.asp", "Advanced_WSecurity_Content.asp", "Advanced_WAdvanced_Content.asp");
 tablink[2] = new Array("", "Advanced_LAN_Content.asp", "Advanced_DHCP_Content.asp", "Advanced_GWStaticRoute_Content.asp", "Advanced_IPTV_Content.asp", "Advanced_Switch_Content.asp", "Advanced_WOL_Content.asp");
@@ -396,10 +405,20 @@ tablink[6] = new Array("", "Advanced_System_Content.asp", "Advanced_Services_Con
 tablink[7] = new Array("", "Advanced_Tweaks_Content.asp", "Advanced_Scripts_Content.asp", "Advanced_InetDetect_Content.asp");
 tablink[8] = new Array("", "Main_WStatus2g_Content.asp", "Main_WStatus_Content.asp", "", "", "", "", "", "", "", "");
 tablink[9] = new Array("", "Main_LogStatus_Content.asp", "Main_DHCPStatus_Content.asp", "Main_IPTStatus_Content.asp", "Main_RouteStatus_Content.asp", "Main_CTStatus_Content.asp");
+tablink[10] = new Array("", "dns-forwarder.asp", "Shadowsocks.asp", "Shadowsocks_log.asp");
+
+if (found_app_dnsforwarder()){
+	dns_forwarder_array = new Array("", "dns-forwarder.asp", "Shadowsocks.asp", "Shadowsocks_log.asp");
+	tablink[10] = (dns_forwarder_array);
+}
 
 //Level 2 Menu
-menuL2_title = new Array("", "<#menu5_11#>", "<#menu5_12#>", "<#menu5_2#>", "<#menu5_3#>", "<#menu5_5#>", "<#menu5_4#>", "<#menu5_6#>", "<#menu5_10#>", "<#menu5_9#>", "<#menu5_7#>");
-menuL2_link  = new Array("", tablink[0][1], tablink[1][1], tablink[2][1], tablink[3][1], tablink[4][1], tablink[5][1], tablink[6][1], tablink[7][1], tablink[8][1], tablink[9][1]);
+menuL2_title = new Array("", "<#menu5_11#>", "<#menu5_12#>", "<#menu5_2#>", "<#menu5_3#>", "<#menu5_5#>", "<#menu5_4#>", "<#menu5_6#>", "<#menu5_10#>", "<#menu5_9#>", "<#menu5_7#>", "<#menu5_13#>");
+
+menuL2_link  = new Array("", tablink[0][1], tablink[1][1], tablink[2][1], tablink[3][1], tablink[4][1], tablink[5][1], tablink[6][1], tablink[7][1], tablink[8][1], tablink[9][1], tablink[10][1]);
+if (found_app_dnsforwarder()){
+	menuL2_link.push(tablink[10][1]);
+} else menuL2_link.push("");
 
 //Level 1 Menu in Gateway, Router mode
 menuL1_title = new Array("", "<#menu1#>", "<#menu3#>", "<#menu2#>", "<#menu6#>", "<#menu4#>", "<#menu5_8#>", "<#menu5#>");
@@ -461,6 +480,13 @@ function show_menu(L1, L2, L3){
 	if(num_ephy<8){
 		tabtitle[8].splice(3+num_ephy,8-num_ephy);
 		tablink[8].splice(3+num_ephy,8-num_ephy);
+	}
+
+	if(!support_2g_radio()){
+		menuL2_link[1] = "";  //remove 2G
+		menuL2_title[1] = "";
+		tabtitle[0].splice(1,6);
+		tablink[0].splice(1,6);
 	}
 
 	if(!support_5g_radio()){
@@ -547,7 +573,7 @@ function show_footer(){
 	footer_code = '<div align="center" class="bottom-image"></div>\n';
 	footer_code +='<div align="center" class="copyright"><#footer_copyright_desc#></div>\n';
 	footer_code +='<div align="center">\n';
-	footer_code +='  <span>Highcharts by Torstein Hønsi & <a href="http://www.highcharts.com">Highsoft</a></span></br>\n';
+	footer_code +='  <span>Highcharts by Torstein Honsi & <a href="http://www.highcharts.com">Highsoft</a></span></br>\n';
 	footer_code +='  <span>Big icons designed by <a href="http://www.freepik.com">Freepik</a></br></span>\n';
 	footer_code +='  <span>Non-Commercial Use Only</span></br>\n';
 	footer_code +='</div>\n';
@@ -630,18 +656,14 @@ function show_loading_obj(){
 function submit_language(){
 	if($("select_lang").value != $("preferred_lang").value){
 		showLoading();
-		
 		with(document.titleForm){
 			action = "/start_apply.htm";
-			
 			if(location.pathname == "/")
 				current_page.value = "/index.asp";
 			else
 				current_page.value = location.pathname;
-			
 			preferred_lang.value = $("select_lang").value;
 			flag.value = "set_language";
-			
 			submit();
 		}
 	}
@@ -755,10 +777,8 @@ function $(){
 		var element = arguments[i];
 	if(typeof element == 'string')
 		element = document.getElementById(element);
-		
 		if(arguments.length == 1)
 			return element;
-		
 		elements.push(element);
 	}
 
@@ -780,7 +800,6 @@ function getElementsByName_iefix(tag, name){
 
 	for(var i = 0, targetObjs_length = 0; i < tagObjs.length; ++i){
 		objsName = tagObjs[i].getAttribute("name");
-		
 		if(objsName && objsName.indexOf(name) == 0){
 			targetObjs[targetObjs_length] = tagObjs[i];
 			++targetObjs_length;
@@ -804,7 +823,6 @@ function getElementsByClassName_iefix(tag, name){
 			objsName = tagObjs[i].getAttribute("class");
 		else
 			objsName = tagObjs[i].getAttribute("className");
-		
 		if(objsName == name){
 			targetObjs[targetObjs_length] = tagObjs[i];
 			++targetObjs_length;
@@ -826,7 +844,6 @@ function showhtmlspace(ori_str){
 	while((tail_num = head.indexOf(" ")) >= 0){
 		str += head.substring(0, tail_num);
 		str += "&nbsp;";
-		
 		head = head.substr(tail_num+1, head.length-(tail_num+1));
 	}
 	str += head;
@@ -841,7 +858,6 @@ function showhtmland(ori_str){
 	while((tail_num = head.indexOf("&")) >= 0){
 		str += head.substring(0, tail_num);
 		str += "&amp;";
-		
 		head = head.substr(tail_num+1, head.length-(tail_num+1));
 	}
 	str += head;
@@ -862,31 +878,25 @@ function validate_string(string_obj, flag){
 	if(string_obj.value.charAt(0) == '"'){
 		if(flag != "noalert")
 			alert('<#JS_validstr1#> ["]');
-		
 		string_obj.value = "";
 		string_obj.focus();
-		
 		return false;
 	}
 	else{
 		invalid_char = "";
-		
 		for(var i = 0; i < string_obj.value.length; ++i){
 			if(string_obj.value.charAt(i) < ' ' || string_obj.value.charAt(i) > '~'){
 				invalid_char = invalid_char+string_obj.value.charAt(i);
 			}
 		}
-		
 		if(invalid_char != ""){
 			if(flag != "noalert")
 				alert("<#JS_validstr2#> '"+invalid_char+"' !");
 			string_obj.value = "";
 			string_obj.focus();
-			
 			return false;
 		}
 	}
-	
 	return true;
 }
 
@@ -906,7 +916,6 @@ function validate_psk(psk_obj){
 		psk_obj.value = "00000000";
 		psk_obj.focus();
 		psk_obj.select();
-		
 		return false;
 	}
 	if(psk_length > 64){
@@ -914,7 +923,6 @@ function validate_psk(psk_obj){
 		psk_obj.value = psk_obj.value.substring(0, 64);
 		psk_obj.focus();
 		psk_obj.select();
-		
 		return false;
 	}
 	if(psk_length >= 8 && psk_length <= 63 && !validate_string(psk_obj)){
@@ -922,7 +930,6 @@ function validate_psk(psk_obj){
 		psk_obj.value = "00000000";
 		psk_obj.focus();
 		psk_obj.select();
-		
 		return false;
 	}
 	if(psk_length == 64 && !validate_hex(psk_obj)){
@@ -930,7 +937,6 @@ function validate_psk(psk_obj){
 		psk_obj.value = "00000000";
 		psk_obj.focus();
 		psk_obj.select();
-		
 		return false;
 	}
 	return true;
@@ -940,10 +946,8 @@ function checkDuplicateName(newname, targetArray){
 	var existing_string = targetArray.join(',');
 	existing_string = ","+existing_string+",";
 	var newstr = ","+trim(newname)+",";
-	
 	var re = new RegExp(newstr, "gi");
 	var matchArray = existing_string.match(re);
-	
 	if(matchArray != null)
 		return true;
 	else
@@ -965,7 +969,6 @@ function refreshpage(seconds){
 function hideLinkTag(){
 	if(document.all){
 		var tagObjs = document.all.tags("a");
-		
 		for(var i = 0; i < tagObjs.length; ++i)
 			tagObjs(i).outerHTML = tagObjs(i).outerHTML.replace(">"," hidefocus=true>");
 	}
@@ -985,14 +988,11 @@ function buttonOut(o){	//Lockchou 1206 modified
 function flash_button(){
 	if(navigator.appName.indexOf("Microsoft") < 0)
 		return;
-	
 	var btnObj = getElementsByClassName_iefix("input", "button");
-	
 	for(var i = 0; i < btnObj.length; ++i){
 		btnObj[i].onmouseover = function(){
 				buttonOver(this);
 			};
-		
 		btnObj[i].onmouseout = function(){
 				buttonOut(this);
 			};
@@ -1007,7 +1007,6 @@ function no_flash_button(){
 
 	for(var i = 0; i < btnObj.length; ++i){
 		btnObj[i].onmouseover = "";
-		
 		btnObj[i].onmouseout = "";
 	}
 }
@@ -1142,19 +1141,19 @@ function setLogStamp(mt){
 
 function setLogData(){
     var $j = jQuery.noConflict();
-    $j.get('/log_content.asp', function(data){
-        // fix for ie
-        if($j.browser.msie && !is_ie11p)
-            data = data.nl2br();
-        if($j("#log_area").val() == ''){
-            $j("#log_area").text(data);
-            $j("#log_area").prop('scrollTop', $j("#log_area").prop('scrollHeight'));
-        }else{
-            var scrTop = $j("#log_area").prop('scrollTop');
-            $j("#log_area").text(data);
-            $j("#log_area").prop('scrollTop', scrTop);
-        }
-    });
+        $j.get('/log_content.asp', function(data){
+            // fix for ie
+            if($j.browser.msie && !is_ie11p)
+                data = data.nl2br();
+            if($j("#log_area").val() == ''){
+                $j("#log_area").text(data);
+                $j("#log_area").prop('scrollTop', $j("#log_area").prop('scrollHeight'));
+            }else{
+                var scrTop = $j("#log_area").prop('scrollTop');
+                $j("#log_area").text(data);
+                $j("#log_area").prop('scrollTop', scrTop);
+            }
+        });
 }
 
 function showClockLogArea(){
@@ -1319,7 +1318,6 @@ function removeFromLocalStorage(name){
         if(settings.tabLocation === 'bottom') {
             obj.css({'bottom' : '-' + properties.containerHeight, 'position' : 'fixed'});
             settings.tabHandle.css({'top' : '-' + properties.tabHeight});
-
         }
 
         if(settings.tabLocation === 'left' || settings.tabLocation === 'right') {
@@ -1339,7 +1337,6 @@ function removeFromLocalStorage(name){
         if(settings.tabLocation === 'right') {
             obj.css({ 'right': '-' + properties.containerWidth});
             settings.tabHandle.css({'left' : '-' + properties.tabWidth});
-
             $j('html').css('overflow-x', 'hidden');
         }
 
@@ -1360,7 +1357,6 @@ function removeFromLocalStorage(name){
             } else if (settings.tabLocation === 'bottom') {
                 obj.animate({bottom: '-' + properties.containerHeight}, settings.speed).removeClass('open');
             }
-
         };
 
         var slideOut = function() {
@@ -1414,7 +1410,6 @@ function removeFromLocalStorage(name){
                 }
             });
             clickScreenToClose();
-
         };
 
         //choose which type of action to bind
@@ -1426,4 +1421,5 @@ function removeFromLocalStorage(name){
             hoverAction();
         }
     };
+
 })(jQuery);

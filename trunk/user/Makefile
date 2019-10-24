@@ -23,6 +23,9 @@ STORAGE_ENABLED=n
 OPENSSH_ENABLED=n
 DROPBEAR_ENABLED=n
 SAMBA_ENABLED=n
+CHNROUTE_ENABLED=n
+SHADOWSOCKS_ENABLE=n
+
 ifneq ($(CONFIG_FIRMWARE_INCLUDE_OPENSSH),y)
 ifeq ($(CONFIG_FIRMWARE_INCLUDE_DROPBEAR),y)
 DROPBEAR_ENABLED=y
@@ -69,6 +72,18 @@ SAMBA_ENABLED=y
 endif
 endif
 
+ifeq ($(CONFIG_FIRMWARE_INCLUDE_SHADOWSOCKS),y)
+CHNROUTE_ENABLED=y
+endif
+
+ifeq ($(CONFIG_FIRMWARE_INCLUDE_SSSERVER),y)
+SHADOWSOCKS_ENABLE=y
+endif
+
+ifeq ($(CONFIG_FIRMWARE_INCLUDE_SHADOWSOCKS),y)
+SHADOWSOCKS_ENABLE=y
+endif
+
 dir_y =
 dir_n =
 dir_  =
@@ -87,6 +102,8 @@ dir_y						+= networkmap
 dir_y						+= httpd
 dir_y						+= www
 dir_y						+= rc
+dir_$(CONFIG_FIRMWARE_INCLUDE_NAPT66)		+= napt66
+dir_$(CONFIG_FIRMWARE_INCLUDE_SFE)		+= shortcut-fe
 dir_y						+= infosvr
 dir_y						+= inadyn
 dir_y						+= miniupnpd
@@ -111,6 +128,9 @@ dir_$(CONFIG_FIRMWARE_INCLUDE_SSWAN)		+= strongswan
 dir_$(CONFIG_FIRMWARE_INCLUDE_XUPNPD)		+= xupnpd
 dir_$(CONFIG_FIRMWARE_INCLUDE_TCPDUMP)		+= tcpdump
 dir_$(SAMBA_ENABLED)				+= samba3
+dir_$(CHNROUTE_ENABLED)				+= chnroute
+dir_$(CONFIG_FIRMWARE_INCLUDE_DNSFORWARDER)		+= dns-forwarder
+dir_$(SHADOWSOCKS_ENABLE)				+= shadowsocks
 
 ifdef CONFIG_BLK_DEV_SD
 dir_$(CONFIG_FIRMWARE_INCLUDE_HDPARM)		+= hdparm
@@ -140,38 +160,4 @@ dir_$(CONFIG_FIRMWARE_INCLUDE_TRANSMISSION)	+= transmission
 dir_$(CONFIG_FIRMWARE_INCLUDE_ARIA)		+= aria2
 endif
 
-ifdef CONFIG_MTD_UBI
-ifneq ($(STORAGE_ENABLED),y)
-dir_y						+= util-linux
-dir_y						+= optware
-endif
-dir_y						+= mtd-utils
-endif
-
-all:
-	for i in $(dir_y) ; do \
-		[ ! -d $$i ] || \
-		$(MAKE) -j1 -C $$i || \
-		exit $$? ; \
-	done
-
-%_only:
-	$(MAKE) -C $(@:_only=)
-
-%_romfs:
-	$(MAKE) -C $(@:_romfs=) romfs
-
-%_clean:
-	$(MAKE) -C $(@:_clean=) clean
-
-romfs:
-	for i in $(dir_y) ; do \
-		[ ! -d $$i ] || \
-		$(MAKE) -C $$i romfs ; \
-	done
-
-clean:
-	for i in `ls -d *` ; do \
-		[ ! -d $$i ] || \
-		$(MAKE) -C $$i clean ; \
-	done
+ifdef CONFIG_

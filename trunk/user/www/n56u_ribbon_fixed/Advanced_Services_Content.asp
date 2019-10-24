@@ -29,8 +29,8 @@ $j(document).ready(function() {
 	init_itoggle('lltd_enable');
 	init_itoggle('adsc_enable');
 	init_itoggle('crond_enable', change_crond_enabled);
+	init_itoggle('napt66_enable');
 	init_itoggle('watchdog_cpu');
-	
 });
 
 </script>
@@ -38,6 +38,10 @@ $j(document).ready(function() {
 
 <% login_state_hook(); %>
 <% openssl_util_hook(); %>
+var lan_ipaddr = '<% nvram_get_x("", "lan_ipaddr_t"); %>';
+var http_proto = '<% nvram_get_x("", "http_proto"); %>';
+var http_port = '<% nvram_get_x("", "http_lanport"); %>';
+var https_port = '<% nvram_get_x("", "https_lport"); %>';
 
 function initial(){
 	show_banner(1);
@@ -68,6 +72,10 @@ function initial(){
 		http_proto_change();
 	}
 	change_crond_enabled();
+
+	if(!found_app_napt66()){
+		showhide_div('div_napt66', 0);
+	}
 }
 
 function applyRule(){
@@ -416,6 +424,7 @@ function change_crond_enabled(){
                                         </tr>
                                         <tr id="row_ssh_keys" style="display:none">
                                             <td colspan="2" style="padding-bottom: 0px;">
+                                                <span class="icon-hand-right"></span>
                                                 <a href="javascript:spoiler_toggle('authorized_keys')"><span><#Adm_System_sshd_keys#> (authorized_keys)</span></a>
                                                 <div id="authorized_keys" style="display:none;">
                                                     <textarea rows="8" wrap="off" spellcheck="false" maxlength="8192" class="span12" name="scripts.authorized_keys" style="font-family:'Courier New'; font-size:12px;"><% nvram_dump("scripts.authorized_keys",""); %></textarea>
@@ -468,6 +477,22 @@ function change_crond_enabled(){
                                         <tr>
                                             <th colspan="2" style="background-color: #E3E3E3;"><#Adm_System_misc#></th>
                                         </tr>
+
+                                        <tr id="div_napt66">
+                                            <th><#Adm_Svc_napt66#></th>
+                                            <td>
+                                                <div class="main_itoggle">
+                                                    <div id="napt66_enable_on_of">
+                                                        <input type="checkbox" id="napt66_enable_fake" <% nvram_match_x("", "napt66_enable", "1", "value=1 checked"); %><% nvram_match_x("", "napt66_enable", "0", "value=0"); %>>
+                                                    </div>
+                                                </div>
+                                                <div style="position: absolute; margin-left: -10000px;">
+                                                    <input type="radio" name="napt66_enable" id="napt66_enable_1" class="input" value="1" <% nvram_match_x("", "napt66_enable", "1", "checked"); %>/><#checkbox_Yes#>
+                                                    <input type="radio" name="napt66_enable" id="napt66_enable_0" class="input" value="0" <% nvram_match_x("", "napt66_enable", "0", "checked"); %>/><#checkbox_No#>
+                                                </div>
+                                            </td>
+                                        </tr>
+
                                         <tr>
                                             <th><#Adm_Svc_lltd#></th>
                                             <td>
@@ -512,7 +537,9 @@ function change_crond_enabled(){
                                         </tr>
                                         <tr id="row_crontabs" style="display:none">
                                             <td colspan="2">
+                                                <span class="icon-hand-right"></span>
                                                 <a href="javascript:spoiler_toggle('crond_crontabs')"><span><#Adm_Svc_crontabs#></span></a>
+                                                <a target="_blank" style="position: absolute;left: 200px;" href="http://crontab.guru/" class="label label-info" title="online contab generator">Contab Generator</a>
                                                 <div id="crond_crontabs" style="display:none;">
                                                     <textarea rows="8" wrap="off" spellcheck="false" maxlength="8192" class="span12" name="crontab.login" style="font-family:'Courier New'; font-size:12px;"><% nvram_dump("crontab.login",""); %></textarea>
                                                 </div>

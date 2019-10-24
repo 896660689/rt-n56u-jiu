@@ -2669,7 +2669,7 @@ VOID	RTMPCommSiteSurveyData(
 #endif /* AIRPLAY_SUPPORT */
 		
 		sprintf(Ssid, "0x");
-		for (idx = 0; (idx < MAX_LEN_OF_SSID) && (idx < pBss->SsidLen); idx++)
+		for (idx = 0; (idx < (MAX_LEN_OF_SSID-2)/2) && (idx < pBss->SsidLen); idx++)
 			sprintf(Ssid + 2 + (idx*2), "%02X", (UCHAR)pBss->Ssid[idx]);
 	}
 		sprintf(msg+strlen(msg),"%-33s", Ssid);
@@ -3114,6 +3114,7 @@ VOID RTMPIoctlGetSiteSurvey(
 	INT         max_len = LINE_LEN;		
 	BSS_ENTRY *pBss;
 	UINT32 TotalLen, BufLen = IW_SCAN_MAX_DATA;
+	BSS_TABLE *pScanTab;
 #ifdef AIRPLAY_SUPPORT
 	UCHAR TargetSsid[MAX_LEN_OF_SSID+1];
 	UCHAR TargetSsidLen = 0;
@@ -3203,6 +3204,9 @@ VOID RTMPIoctlGetSiteSurvey(
 
 	while ((ScanRunning(pAdapter) == TRUE) && (WaitCnt++ < 200))
 		OS_WAIT(500);	
+
+	pScanTab = &pAdapter->ScanTab;
+	BssTableSortByRssi(pScanTab,FALSE);
 
 	for(i=0; i<pAdapter->ScanTab.BssNr ;i++)
 	{
@@ -10492,4 +10496,4 @@ INT Show_Cal_Info(RTMP_ADAPTER *pAd, PSTRING arg)
 		
 	return TRUE;
 }
-#endif	
+#endif

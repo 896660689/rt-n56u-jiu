@@ -1,0 +1,416 @@
+The target system is: Linux -  - 
+The host system is: Linux - 4.15.0-43-generic - i686
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler: /opt/rt-n56u/trunk/../toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc 
+Build flags: -Os;-fomit-frame-pointer;-pipe;;-Dlinux;-D__linux__;-Dunix;-DEMBED;-I/opt/rt-n56u/trunk/stage/include;-Wall;-Wno-trigraphs;-Wno-strict-aliasing;-Wno-format-security;;;-Wno-pointer-sign
+Id flags: 
+
+The output was:
+0
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+
+The C compiler identification is GNU, found in "/opt/rt-n56u/trunk/user/dns-forwarder/dns-forwarder-1.2.1/build/CMakeFiles/3.5.1/CompilerIdC/a.out"
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+Compiler: /opt/rt-n56u/trunk/../toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-g++ 
+Build flags: -Os;-fomit-frame-pointer;-pipe;;-Dlinux;-D__linux__;-Dunix;-DEMBED;-I/opt/rt-n56u/trunk/stage/include;-Wall;-Wno-trigraphs;-Wno-strict-aliasing;-Wno-format-security;;;
+Id flags: 
+
+The output was:
+0
+
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+
+The CXX compiler identification is GNU, found in "/opt/rt-n56u/trunk/user/dns-forwarder/dns-forwarder-1.2.1/build/CMakeFiles/3.5.1/CompilerIdCXX/a.out"
+
+Determining if the C compiler works passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/user/dns-forwarder/dns-forwarder-1.2.1/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_6f1b6/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/user/dns-forwarder/dns-forwarder-1.2.1/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_6f1b6.dir/build.make CMakeFiles/cmTC_6f1b6.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/user/dns-forwarder/dns-forwarder-1.2.1/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_6f1b6.dir/testCCompiler.c.o
+/opt/rt-n56u/trunk/../toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc    -Os -fomit-frame-pointer -pipe  -Dlinux -D__linux__ -Dunix -DEMBED -I/opt/rt-n56u/trunk/stage/include -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign     -o CMakeFiles/cmTC_6f1b6.dir/testCCompiler.c.o   -c /opt/rt-n56u/trunk/user/dns-forwarder/dns-forwarder-1.2.1/build/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTC_6f1b6
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_6f1b6.dir/link.txt --verbose=1
+/opt/rt-n56u/trunk/../toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc  -Os -fomit-frame-pointer -pipe  -Dlinux -D__linux__ -Dunix -DEMBED -I/opt/rt-n56u/trunk/stage/include -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign     -L/opt/rt-n56u/trunk/stage/lib  CMakeFiles/cmTC_6f1b6.dir/testCCompiler.c.o  -o cmTC_6f1b6 -rdynamic 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/user/dns-forwarder/dns-forwarder-1.2.1/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/user/dns-forwarder/dns-forwarder-1.2.1/build/CMakeFiles/CMakeTmp'
+
+
+Detecting C compiler ABI info compiled with the following output:
+Change Dir: /opt/rt-n56u/trunk/user/dns-forwarder/dns-forwarder-1.2.1/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_4b95e/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/user/dns-forwarder/dns-forwarder-1.2.1/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_4b95e.dir/build.make CMakeFiles/cmTC_4b95e.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/user/dns-forwarder/dns-forwarder-1.2.1/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_4b95e.dir/CMakeCCompilerABI.c.o
+/opt/rt-n56u/trunk/../toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc    -Os -fomit-frame-pointer -pipe  -Dlinux -D__linux__ -Dunix -DEMBED -I/opt/rt-n56u/trunk/stage/include -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign     -o CMakeFiles/cmTC_4b95e.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-3.5/Modules/CMakeCCompilerABI.c
+Linking C executable cmTC_4b95e
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4b95e.dir/link.txt --verbose=1
+/opt/rt-n56u/trunk/../toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc  -Os -fomit-frame-pointer -pipe  -Dlinux -D__linux__ -Dunix -DEMBED -I/opt/rt-n56u/trunk/stage/include -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign     -L/opt/rt-n56u/trunk/stage/lib -v CMakeFiles/cmTC_4b95e.dir/CMakeCCompilerABI.c.o  -o cmTC_4b95e -rdynamic  
+Using built-in specs.
+Target: mipsel-linux-uclibc
+Configured with: ../gcc-4.4.7/configure --target=mipsel-linux-uclibc --prefix=/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x --with-gnu-ld --with-gnu-as --disable-shared --disable-multilib --enable-tls --enable-threads=posix --disable-libmudflap --disable-libssp --disable-sanity-checks --disable-werror --disable-lto --enable-ld=yes --enable-gold=no --disable-libgomp --disable-nls --with-sysroot=/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x --enable-languages=c++
+Thread model: posix
+gcc version 4.4.7 (GCC) 
+COMPILER_PATH=/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/libexec/gcc/mipsel-linux-uclibc/4.4.7/:/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/libexec/gcc/mipsel-linux-uclibc/4.4.7/:/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/libexec/gcc/mipsel-linux-uclibc/:/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7/:/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/:/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7/../../../../mipsel-linux-uclibc/bin/
+LIBRARY_PATH=/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7/:/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7/../../../../mipsel-linux-uclibc/lib/:/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/
+COLLECT_GCC_OPTIONS='-Os' '-fomit-frame-pointer' '-pipe' '-Dlinux' '-D__linux__' '-Dunix' '-DEMBED' '-I/opt/rt-n56u/trunk/stage/include' '-Wall' '-Wno-trigraphs' '-Wno-strict-aliasing' '-Wno-format-security' '-Wno-pointer-sign' '-L/opt/rt-n56u/trunk/stage/lib' '-v' '-o' 'cmTC_4b95e' '-rdynamic' '-mllsc' '-mno-shared'
+ /opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/libexec/gcc/mipsel-linux-uclibc/4.4.7/collect2 --sysroot=/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x --eh-frame-hdr -EL -export-dynamic -dynamic-linker /lib/ld-uClibc.so.0 -o cmTC_4b95e /opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/crt1.o /opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/crti.o /opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7/crtbegin.o -L/opt/rt-n56u/trunk/stage/lib -L/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7 -L/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7/../../../../mipsel-linux-uclibc/lib -L/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib CMakeFiles/cmTC_4b95e.dir/CMakeCCompilerABI.c.o -lgcc -lc -lgcc /opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7/crtend.o /opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/crtn.o
+make[5]: Leaving directory '/opt/rt-n56u/trunk/user/dns-forwarder/dns-forwarder-1.2.1/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/user/dns-forwarder/dns-forwarder-1.2.1/build/CMakeFiles/CMakeTmp'
+
+
+Parsed C implicit link information from above output:
+  link line regex: [^( *|.*[/\])(mipsel-linux-uclibc-ld|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /opt/rt-n56u/trunk/user/dns-forwarder/dns-forwarder-1.2.1/build/CMakeFiles/CMakeTmp]
+  ignore line: []
+  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_4b95e/fast"]
+  ignore line: [make[4]: Entering directory '/opt/rt-n56u/trunk/user/dns-forwarder/dns-forwarder-1.2.1/build/CMakeFiles/CMakeTmp']
+  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_4b95e.dir/build.make CMakeFiles/cmTC_4b95e.dir/build]
+  ignore line: [make[5]: Entering directory '/opt/rt-n56u/trunk/user/dns-forwarder/dns-forwarder-1.2.1/build/CMakeFiles/CMakeTmp']
+  ignore line: [Building C object CMakeFiles/cmTC_4b95e.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/opt/rt-n56u/trunk/../toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc    -Os -fomit-frame-pointer -pipe  -Dlinux -D__linux__ -Dunix -DEMBED -I/opt/rt-n56u/trunk/stage/include -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign     -o CMakeFiles/cmTC_4b95e.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-3.5/Modules/CMakeCCompilerABI.c]
+  ignore line: [Linking C executable cmTC_4b95e]
+  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4b95e.dir/link.txt --verbose=1]
+  ignore line: [/opt/rt-n56u/trunk/../toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc  -Os -fomit-frame-pointer -pipe  -Dlinux -D__linux__ -Dunix -DEMBED -I/opt/rt-n56u/trunk/stage/include -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign     -L/opt/rt-n56u/trunk/stage/lib -v CMakeFiles/cmTC_4b95e.dir/CMakeCCompilerABI.c.o  -o cmTC_4b95e -rdynamic  ]
+  ignore line: [Using built-in specs.]
+  ignore line: [Target: mipsel-linux-uclibc]
+  ignore line: [Configured with: ../gcc-4.4.7/configure --target=mipsel-linux-uclibc --prefix=/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x --with-gnu-ld --with-gnu-as --disable-shared --disable-multilib --enable-tls --enable-threads=posix --disable-libmudflap --disable-libssp --disable-sanity-checks --disable-werror --disable-lto --enable-ld=yes --enable-gold=no --disable-libgomp --disable-nls --with-sysroot=/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x --enable-languages=c++]
+  ignore line: [Thread model: posix]
+  ignore line: [gcc version 4.4.7 (GCC) ]
+  ignore line: [COMPILER_PATH=/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/libexec/gcc/mipsel-linux-uclibc/4.4.7/:/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/libexec/gcc/mipsel-linux-uclibc/4.4.7/:/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/libexec/gcc/mipsel-linux-uclibc/:/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7/:/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/:/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7/../../../../mipsel-linux-uclibc/bin/]
+  ignore line: [LIBRARY_PATH=/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7/:/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7/../../../../mipsel-linux-uclibc/lib/:/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-Os' '-fomit-frame-pointer' '-pipe' '-Dlinux' '-D__linux__' '-Dunix' '-DEMBED' '-I/opt/rt-n56u/trunk/stage/include' '-Wall' '-Wno-trigraphs' '-Wno-strict-aliasing' '-Wno-format-security' '-Wno-pointer-sign' '-L/opt/rt-n56u/trunk/stage/lib' '-v' '-o' 'cmTC_4b95e' '-rdynamic' '-mllsc' '-mno-shared']
+  link line: [ /opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/libexec/gcc/mipsel-linux-uclibc/4.4.7/collect2 --sysroot=/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x --eh-frame-hdr -EL -export-dynamic -dynamic-linker /lib/ld-uClibc.so.0 -o cmTC_4b95e /opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/crt1.o /opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/crti.o /opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7/crtbegin.o -L/opt/rt-n56u/trunk/stage/lib -L/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7 -L/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7/../../../../mipsel-linux-uclibc/lib -L/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib CMakeFiles/cmTC_4b95e.dir/CMakeCCompilerABI.c.o -lgcc -lc -lgcc /opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7/crtend.o /opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/crtn.o]
+    arg [/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/libexec/gcc/mipsel-linux-uclibc/4.4.7/collect2] ==> ignore
+    arg [--sysroot=/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x] ==> ignore
+    arg [--eh-frame-hdr] ==> ignore
+    arg [-EL] ==> ignore
+    arg [-export-dynamic] ==> ignore
+    arg [-dynamic-linker] ==> ignore
+    arg [/lib/ld-uClibc.so.0] ==> ignore
+    arg [-o] ==> ignore
+    arg [cmTC_4b95e] ==> ignore
+    arg [/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/crt1.o] ==> ignore
+    arg [/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/crti.o] ==> ignore
+    arg [/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7/crtbegin.o] ==> ignore
+    arg [-L/opt/rt-n56u/trunk/stage/lib] ==> dir [/opt/rt-n56u/trunk/stage/lib]
+    arg [-L/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7] ==> dir [/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7]
+    arg [-L/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7/../../../../mipsel-linux-uclibc/lib] ==> dir [/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7/../../../../mipsel-linux-uclibc/lib]
+    arg [-L/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib] ==> dir [/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib]
+    arg [CMakeFiles/cmTC_4b95e.dir/CMakeCCompilerABI.c.o] ==> ignore
+    arg [-lgcc] ==> lib [gcc]
+    arg [-lc] ==> lib [c]
+    arg [-lgcc] ==> lib [gcc]
+    arg [/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7/crtend.o] ==> ignore
+    arg [/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/crtn.o] ==> ignore
+  remove lib [gcc]
+  remove lib [gcc]
+  collapse library dir [/opt/rt-n56u/trunk/stage/lib] ==> [/opt/rt-n56u/trunk/stage/lib]
+  collapse library dir [/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7] ==> [/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7]
+  collapse library dir [/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7/../../../../mipsel-linux-uclibc/lib] ==> [/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/mipsel-linux-uclibc/lib]
+  collapse library dir [/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib] ==> [/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib]
+  implicit libs: [c]
+  implicit dirs: [/opt/rt-n56u/trunk/stage/lib;/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7;/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/mipsel-linux-uclibc/lib;/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib]
+  implicit fwks: []
+
+
+
+
+Detecting C [-std=c99] compiler features compiled with the following output:
+Change Dir: /opt/rt-n56u/trunk/user/dns-forwarder/dns-forwarder-1.2.1/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_747e2/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/user/dns-forwarder/dns-forwarder-1.2.1/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_747e2.dir/build.make CMakeFiles/cmTC_747e2.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/user/dns-forwarder/dns-forwarder-1.2.1/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_747e2.dir/feature_tests.c.o
+/opt/rt-n56u/trunk/../toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc    -Os -fomit-frame-pointer -pipe  -Dlinux -D__linux__ -Dunix -DEMBED -I/opt/rt-n56u/trunk/stage/include -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign     -std=c99 -o CMakeFiles/cmTC_747e2.dir/feature_tests.c.o   -c /opt/rt-n56u/trunk/user/dns-forwarder/dns-forwarder-1.2.1/build/CMakeFiles/feature_tests.c
+Linking C executable cmTC_747e2
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_747e2.dir/link.txt --verbose=1
+/opt/rt-n56u/trunk/../toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc  -Os -fomit-frame-pointer -pipe  -Dlinux -D__linux__ -Dunix -DEMBED -I/opt/rt-n56u/trunk/stage/include -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign     -L/opt/rt-n56u/trunk/stage/lib  CMakeFiles/cmTC_747e2.dir/feature_tests.c.o  -o cmTC_747e2 -rdynamic 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/user/dns-forwarder/dns-forwarder-1.2.1/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/user/dns-forwarder/dns-forwarder-1.2.1/build/CMakeFiles/CMakeTmp'
+
+
+    Feature record: C_FEATURE:1c_function_prototypes
+    Feature record: C_FEATURE:1c_restrict
+    Feature record: C_FEATURE:0c_static_assert
+    Feature record: C_FEATURE:1c_variadic_macros
+
+
+Detecting C [-std=c89] compiler features compiled with the following output:
+Change Dir: /opt/rt-n56u/trunk/user/dns-forwarder/dns-forwarder-1.2.1/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_11645/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/user/dns-forwarder/dns-forwarder-1.2.1/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_11645.dir/build.make CMakeFiles/cmTC_11645.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/user/dns-forwarder/dns-forwarder-1.2.1/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_11645.dir/feature_tests.c.o
+/opt/rt-n56u/trunk/../toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc    -Os -fomit-frame-pointer -pipe  -Dlinux -D__linux__ -Dunix -DEMBED -I/opt/rt-n56u/trunk/stage/include -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign     -std=c89 -o CMakeFiles/cmTC_11645.dir/feature_tests.c.o   -c /opt/rt-n56u/trunk/user/dns-forwarder/dns-forwarder-1.2.1/build/CMakeFiles/feature_tests.c
+Linking C executable cmTC_11645
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_11645.dir/link.txt --verbose=1
+/opt/rt-n56u/trunk/../toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc  -Os -fomit-frame-pointer -pipe  -Dlinux -D__linux__ -Dunix -DEMBED -I/opt/rt-n56u/trunk/stage/include -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign     -L/opt/rt-n56u/trunk/stage/lib  CMakeFiles/cmTC_11645.dir/feature_tests.c.o  -o cmTC_11645 -rdynamic 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/user/dns-forwarder/dns-forwarder-1.2.1/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/user/dns-forwarder/dns-forwarder-1.2.1/build/CMakeFiles/CMakeTmp'
+
+
+    Feature record: C_FEATURE:1c_function_prototypes
+    Feature record: C_FEATURE:0c_restrict
+    Feature record: C_FEATURE:0c_static_assert
+    Feature record: C_FEATURE:0c_variadic_macros
+Determining if the CXX compiler works passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/user/dns-forwarder/dns-forwarder-1.2.1/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_7a15e/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/user/dns-forwarder/dns-forwarder-1.2.1/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_7a15e.dir/build.make CMakeFiles/cmTC_7a15e.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/user/dns-forwarder/dns-forwarder-1.2.1/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_7a15e.dir/testCXXCompiler.cxx.o
+/opt/rt-n56u/trunk/../toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-g++     -Os -fomit-frame-pointer -pipe  -Dlinux -D__linux__ -Dunix -DEMBED -I/opt/rt-n56u/trunk/stage/include -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security        -o CMakeFiles/cmTC_7a15e.dir/testCXXCompiler.cxx.o -c /opt/rt-n56u/trunk/user/dns-forwarder/dns-forwarder-1.2.1/build/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
+Linking CXX executable cmTC_7a15e
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_7a15e.dir/link.txt --verbose=1
+/opt/rt-n56u/trunk/../toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-g++   -Os -fomit-frame-pointer -pipe  -Dlinux -D__linux__ -Dunix -DEMBED -I/opt/rt-n56u/trunk/stage/include -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security        -L/opt/rt-n56u/trunk/stage/lib  CMakeFiles/cmTC_7a15e.dir/testCXXCompiler.cxx.o  -o cmTC_7a15e -rdynamic 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/user/dns-forwarder/dns-forwarder-1.2.1/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/user/dns-forwarder/dns-forwarder-1.2.1/build/CMakeFiles/CMakeTmp'
+
+
+Detecting CXX compiler ABI info compiled with the following output:
+Change Dir: /opt/rt-n56u/trunk/user/dns-forwarder/dns-forwarder-1.2.1/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_60c1e/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/user/dns-forwarder/dns-forwarder-1.2.1/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_60c1e.dir/build.make CMakeFiles/cmTC_60c1e.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/user/dns-forwarder/dns-forwarder-1.2.1/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_60c1e.dir/CMakeCXXCompilerABI.cpp.o
+/opt/rt-n56u/trunk/../toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-g++     -Os -fomit-frame-pointer -pipe  -Dlinux -D__linux__ -Dunix -DEMBED -I/opt/rt-n56u/trunk/stage/include -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security        -o CMakeFiles/cmTC_60c1e.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.5/Modules/CMakeCXXCompilerABI.cpp
+Linking CXX executable cmTC_60c1e
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_60c1e.dir/link.txt --verbose=1
+/opt/rt-n56u/trunk/../toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-g++   -Os -fomit-frame-pointer -pipe  -Dlinux -D__linux__ -Dunix -DEMBED -I/opt/rt-n56u/trunk/stage/include -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security        -L/opt/rt-n56u/trunk/stage/lib -v CMakeFiles/cmTC_60c1e.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_60c1e -rdynamic  
+Using built-in specs.
+Target: mipsel-linux-uclibc
+Configured with: ../gcc-4.4.7/configure --target=mipsel-linux-uclibc --prefix=/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x --with-gnu-ld --with-gnu-as --disable-shared --disable-multilib --enable-tls --enable-threads=posix --disable-libmudflap --disable-libssp --disable-sanity-checks --disable-werror --disable-lto --enable-ld=yes --enable-gold=no --disable-libgomp --disable-nls --with-sysroot=/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x --enable-languages=c++
+Thread model: posix
+gcc version 4.4.7 (GCC) 
+COMPILER_PATH=/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/libexec/gcc/mipsel-linux-uclibc/4.4.7/:/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/libexec/gcc/mipsel-linux-uclibc/4.4.7/:/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/libexec/gcc/mipsel-linux-uclibc/:/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7/:/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/:/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7/../../../../mipsel-linux-uclibc/bin/
+LIBRARY_PATH=/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7/:/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7/../../../../mipsel-linux-uclibc/lib/:/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/
+COLLECT_GCC_OPTIONS='-Os' '-fomit-frame-pointer' '-pipe' '-Dlinux' '-D__linux__' '-Dunix' '-DEMBED' '-I/opt/rt-n56u/trunk/stage/include' '-Wall' '-Wno-trigraphs' '-Wno-strict-aliasing' '-Wno-format-security' '-L/opt/rt-n56u/trunk/stage/lib' '-v' '-o' 'cmTC_60c1e' '-rdynamic' '-mllsc' '-mno-shared'
+ /opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/libexec/gcc/mipsel-linux-uclibc/4.4.7/collect2 --sysroot=/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x --eh-frame-hdr -EL -export-dynamic -dynamic-linker /lib/ld-uClibc.so.0 -o cmTC_60c1e /opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/crt1.o /opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/crti.o /opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7/crtbegin.o -L/opt/rt-n56u/trunk/stage/lib -L/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7 -L/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7/../../../../mipsel-linux-uclibc/lib -L/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib CMakeFiles/cmTC_60c1e.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc -lc -lgcc /opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7/crtend.o /opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/crtn.o
+make[5]: Leaving directory '/opt/rt-n56u/trunk/user/dns-forwarder/dns-forwarder-1.2.1/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/user/dns-forwarder/dns-forwarder-1.2.1/build/CMakeFiles/CMakeTmp'
+
+
+Parsed CXX implicit link information from above output:
+  link line regex: [^( *|.*[/\])(mipsel-linux-uclibc-ld|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /opt/rt-n56u/trunk/user/dns-forwarder/dns-forwarder-1.2.1/build/CMakeFiles/CMakeTmp]
+  ignore line: []
+  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_60c1e/fast"]
+  ignore line: [make[4]: Entering directory '/opt/rt-n56u/trunk/user/dns-forwarder/dns-forwarder-1.2.1/build/CMakeFiles/CMakeTmp']
+  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_60c1e.dir/build.make CMakeFiles/cmTC_60c1e.dir/build]
+  ignore line: [make[5]: Entering directory '/opt/rt-n56u/trunk/user/dns-forwarder/dns-forwarder-1.2.1/build/CMakeFiles/CMakeTmp']
+  ignore line: [Building CXX object CMakeFiles/cmTC_60c1e.dir/CMakeCXXCompilerABI.cpp.o]
+  ignore line: [/opt/rt-n56u/trunk/../toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-g++     -Os -fomit-frame-pointer -pipe  -Dlinux -D__linux__ -Dunix -DEMBED -I/opt/rt-n56u/trunk/stage/include -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security        -o CMakeFiles/cmTC_60c1e.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.5/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [Linking CXX executable cmTC_60c1e]
+  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_60c1e.dir/link.txt --verbose=1]
+  ignore line: [/opt/rt-n56u/trunk/../toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-g++   -Os -fomit-frame-pointer -pipe  -Dlinux -D__linux__ -Dunix -DEMBED -I/opt/rt-n56u/trunk/stage/include -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security        -L/opt/rt-n56u/trunk/stage/lib -v CMakeFiles/cmTC_60c1e.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_60c1e -rdynamic  ]
+  ignore line: [Using built-in specs.]
+  ignore line: [Target: mipsel-linux-uclibc]
+  ignore line: [Configured with: ../gcc-4.4.7/configure --target=mipsel-linux-uclibc --prefix=/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x --with-gnu-ld --with-gnu-as --disable-shared --disable-multilib --enable-tls --enable-threads=posix --disable-libmudflap --disable-libssp --disable-sanity-checks --disable-werror --disable-lto --enable-ld=yes --enable-gold=no --disable-libgomp --disable-nls --with-sysroot=/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x --enable-languages=c++]
+  ignore line: [Thread model: posix]
+  ignore line: [gcc version 4.4.7 (GCC) ]
+  ignore line: [COMPILER_PATH=/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/libexec/gcc/mipsel-linux-uclibc/4.4.7/:/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/libexec/gcc/mipsel-linux-uclibc/4.4.7/:/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/libexec/gcc/mipsel-linux-uclibc/:/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7/:/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/:/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7/../../../../mipsel-linux-uclibc/bin/]
+  ignore line: [LIBRARY_PATH=/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7/:/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7/../../../../mipsel-linux-uclibc/lib/:/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-Os' '-fomit-frame-pointer' '-pipe' '-Dlinux' '-D__linux__' '-Dunix' '-DEMBED' '-I/opt/rt-n56u/trunk/stage/include' '-Wall' '-Wno-trigraphs' '-Wno-strict-aliasing' '-Wno-format-security' '-L/opt/rt-n56u/trunk/stage/lib' '-v' '-o' 'cmTC_60c1e' '-rdynamic' '-mllsc' '-mno-shared']
+  link line: [ /opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/libexec/gcc/mipsel-linux-uclibc/4.4.7/collect2 --sysroot=/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x --eh-frame-hdr -EL -export-dynamic -dynamic-linker /lib/ld-uClibc.so.0 -o cmTC_60c1e /opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/crt1.o /opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/crti.o /opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7/crtbegin.o -L/opt/rt-n56u/trunk/stage/lib -L/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7 -L/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7/../../../../mipsel-linux-uclibc/lib -L/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib CMakeFiles/cmTC_60c1e.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc -lc -lgcc /opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7/crtend.o /opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/crtn.o]
+    arg [/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/libexec/gcc/mipsel-linux-uclibc/4.4.7/collect2] ==> ignore
+    arg [--sysroot=/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x] ==> ignore
+    arg [--eh-frame-hdr] ==> ignore
+    arg [-EL] ==> ignore
+    arg [-export-dynamic] ==> ignore
+    arg [-dynamic-linker] ==> ignore
+    arg [/lib/ld-uClibc.so.0] ==> ignore
+    arg [-o] ==> ignore
+    arg [cmTC_60c1e] ==> ignore
+    arg [/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/crt1.o] ==> ignore
+    arg [/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/crti.o] ==> ignore
+    arg [/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7/crtbegin.o] ==> ignore
+    arg [-L/opt/rt-n56u/trunk/stage/lib] ==> dir [/opt/rt-n56u/trunk/stage/lib]
+    arg [-L/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7] ==> dir [/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7]
+    arg [-L/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7/../../../../mipsel-linux-uclibc/lib] ==> dir [/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7/../../../../mipsel-linux-uclibc/lib]
+    arg [-L/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib] ==> dir [/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib]
+    arg [CMakeFiles/cmTC_60c1e.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+    arg [-lstdc++] ==> lib [stdc++]
+    arg [-lm] ==> lib [m]
+    arg [-lgcc] ==> lib [gcc]
+    arg [-lc] ==> lib [c]
+    arg [-lgcc] ==> lib [gcc]
+    arg [/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7/crtend.o] ==> ignore
+    arg [/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/crtn.o] ==> ignore
+  remove lib [gcc]
+  remove lib [gcc]
+  collapse library dir [/opt/rt-n56u/trunk/stage/lib] ==> [/opt/rt-n56u/trunk/stage/lib]
+  collapse library dir [/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7] ==> [/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7]
+  collapse library dir [/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7/../../../../mipsel-linux-uclibc/lib] ==> [/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/mipsel-linux-uclibc/lib]
+  collapse library dir [/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib] ==> [/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib]
+  implicit libs: [stdc++;m;c]
+  implicit dirs: [/opt/rt-n56u/trunk/stage/lib;/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7;/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/mipsel-linux-uclibc/lib;/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib]
+  implicit fwks: []
+
+
+
+
+Detecting CXX [-std=c++0x] compiler features compiled with the following output:
+Change Dir: /opt/rt-n56u/trunk/user/dns-forwarder/dns-forwarder-1.2.1/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_f1028/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/user/dns-forwarder/dns-forwarder-1.2.1/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_f1028.dir/build.make CMakeFiles/cmTC_f1028.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/user/dns-forwarder/dns-forwarder-1.2.1/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_f1028.dir/feature_tests.cxx.o
+/opt/rt-n56u/trunk/../toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-g++     -Os -fomit-frame-pointer -pipe  -Dlinux -D__linux__ -Dunix -DEMBED -I/opt/rt-n56u/trunk/stage/include -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security        -std=c++0x -o CMakeFiles/cmTC_f1028.dir/feature_tests.cxx.o -c /opt/rt-n56u/trunk/user/dns-forwarder/dns-forwarder-1.2.1/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_f1028
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f1028.dir/link.txt --verbose=1
+/opt/rt-n56u/trunk/../toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-g++   -Os -fomit-frame-pointer -pipe  -Dlinux -D__linux__ -Dunix -DEMBED -I/opt/rt-n56u/trunk/stage/include -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security        -L/opt/rt-n56u/trunk/stage/lib  CMakeFiles/cmTC_f1028.dir/feature_tests.cxx.o  -o cmTC_f1028 -rdynamic 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/user/dns-forwarder/dns-forwarder-1.2.1/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/user/dns-forwarder/dns-forwarder-1.2.1/build/CMakeFiles/CMakeTmp'
+
+
+    Feature record: CXX_FEATURE:0cxx_aggregate_default_initializers
+    Feature record: CXX_FEATURE:0cxx_alias_templates
+    Feature record: CXX_FEATURE:0cxx_alignas
+    Feature record: CXX_FEATURE:0cxx_alignof
+    Feature record: CXX_FEATURE:0cxx_attributes
+    Feature record: CXX_FEATURE:0cxx_attribute_deprecated
+    Feature record: CXX_FEATURE:1cxx_auto_type
+    Feature record: CXX_FEATURE:0cxx_binary_literals
+    Feature record: CXX_FEATURE:0cxx_constexpr
+    Feature record: CXX_FEATURE:0cxx_contextual_conversions
+    Feature record: CXX_FEATURE:1cxx_decltype
+    Feature record: CXX_FEATURE:0cxx_decltype_auto
+    Feature record: CXX_FEATURE:0cxx_decltype_incomplete_return_types
+    Feature record: CXX_FEATURE:1cxx_default_function_template_args
+    Feature record: CXX_FEATURE:1cxx_defaulted_functions
+    Feature record: CXX_FEATURE:0cxx_defaulted_move_initializers
+    Feature record: CXX_FEATURE:0cxx_delegating_constructors
+    Feature record: CXX_FEATURE:1cxx_deleted_functions
+    Feature record: CXX_FEATURE:0cxx_digit_separators
+    Feature record: CXX_FEATURE:0cxx_enum_forward_declarations
+    Feature record: CXX_FEATURE:0cxx_explicit_conversions
+    Feature record: CXX_FEATURE:0cxx_extended_friend_declarations
+    Feature record: CXX_FEATURE:1cxx_extern_templates
+    Feature record: CXX_FEATURE:0cxx_final
+    Feature record: CXX_FEATURE:1cxx_func_identifier
+    Feature record: CXX_FEATURE:1cxx_generalized_initializers
+    Feature record: CXX_FEATURE:0cxx_generic_lambdas
+    Feature record: CXX_FEATURE:0cxx_inheriting_constructors
+    Feature record: CXX_FEATURE:1cxx_inline_namespaces
+    Feature record: CXX_FEATURE:0cxx_lambdas
+    Feature record: CXX_FEATURE:0cxx_lambda_init_captures
+    Feature record: CXX_FEATURE:0cxx_local_type_template_args
+    Feature record: CXX_FEATURE:1cxx_long_long_type
+    Feature record: CXX_FEATURE:0cxx_noexcept
+    Feature record: CXX_FEATURE:0cxx_nonstatic_member_init
+    Feature record: CXX_FEATURE:0cxx_nullptr
+    Feature record: CXX_FEATURE:0cxx_override
+    Feature record: CXX_FEATURE:0cxx_range_for
+    Feature record: CXX_FEATURE:0cxx_raw_string_literals
+    Feature record: CXX_FEATURE:0cxx_reference_qualified_functions
+    Feature record: CXX_FEATURE:0cxx_relaxed_constexpr
+    Feature record: CXX_FEATURE:0cxx_return_type_deduction
+    Feature record: CXX_FEATURE:1cxx_right_angle_brackets
+    Feature record: CXX_FEATURE:1cxx_rvalue_references
+    Feature record: CXX_FEATURE:1cxx_sizeof_member
+    Feature record: CXX_FEATURE:1cxx_static_assert
+    Feature record: CXX_FEATURE:1cxx_strong_enums
+    Feature record: CXX_FEATURE:1cxx_template_template_parameters
+    Feature record: CXX_FEATURE:0cxx_thread_local
+    Feature record: CXX_FEATURE:1cxx_trailing_return_types
+    Feature record: CXX_FEATURE:1cxx_unicode_literals
+    Feature record: CXX_FEATURE:1cxx_uniform_initialization
+    Feature record: CXX_FEATURE:0cxx_unrestricted_unions
+    Feature record: CXX_FEATURE:0cxx_user_literals
+    Feature record: CXX_FEATURE:0cxx_variable_templates
+    Feature record: CXX_FEATURE:1cxx_variadic_macros
+    Feature record: CXX_FEATURE:1cxx_variadic_templates
+
+
+Detecting CXX [-std=c++98] compiler features compiled with the following output:
+Change Dir: /opt/rt-n56u/trunk/user/dns-forwarder/dns-forwarder-1.2.1/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_a3777/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/user/dns-forwarder/dns-forwarder-1.2.1/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_a3777.dir/build.make CMakeFiles/cmTC_a3777.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/user/dns-forwarder/dns-forwarder-1.2.1/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_a3777.dir/feature_tests.cxx.o
+/opt/rt-n56u/trunk/../toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-g++     -Os -fomit-frame-pointer -pipe  -Dlinux -D__linux__ -Dunix -DEMBED -I/opt/rt-n56u/trunk/stage/include -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security        -std=c++98 -o CMakeFiles/cmTC_a3777.dir/feature_tests.cxx.o -c /opt/rt-n56u/trunk/user/dns-forwarder/dns-forwarder-1.2.1/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_a3777
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a3777.dir/link.txt --verbose=1
+/opt/rt-n56u/trunk/../toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-g++   -Os -fomit-frame-pointer -pipe  -Dlinux -D__linux__ -Dunix -DEMBED -I/opt/rt-n56u/trunk/stage/include -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security        -L/opt/rt-n56u/trunk/stage/lib  CMakeFiles/cmTC_a3777.dir/feature_tests.cxx.o  -o cmTC_a3777 -rdynamic 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/user/dns-forwarder/dns-forwarder-1.2.1/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/user/dns-forwarder/dns-forwarder-1.2.1/build/CMakeFiles/CMakeTmp'
+
+
+    Feature record: CXX_FEATURE:0cxx_aggregate_default_initializers
+    Feature record: CXX_FEATURE:0cxx_alias_templates
+    Feature record: CXX_FEATURE:0cxx_alignas
+    Feature record: CXX_FEATURE:0cxx_alignof
+    Feature record: CXX_FEATURE:0cxx_attributes
+    Feature record: CXX_FEATURE:0cxx_attribute_deprecated
+    Feature record: CXX_FEATURE:0cxx_auto_type
+    Feature record: CXX_FEATURE:0cxx_binary_literals
+    Feature record: CXX_FEATURE:0cxx_constexpr
+    Feature record: CXX_FEATURE:0cxx_contextual_conversions
+    Feature record: CXX_FEATURE:0cxx_decltype
+    Feature record: CXX_FEATURE:0cxx_decltype_auto
+    Feature record: CXX_FEATURE:0cxx_decltype_incomplete_return_types
+    Feature record: CXX_FEATURE:0cxx_default_function_template_args
+    Feature record: CXX_FEATURE:0cxx_defaulted_functions
+    Feature record: CXX_FEATURE:0cxx_defaulted_move_initializers
+    Feature record: CXX_FEATURE:0cxx_delegating_constructors
+    Feature record: CXX_FEATURE:0cxx_deleted_functions
+    Feature record: CXX_FEATURE:0cxx_digit_separators
+    Feature record: CXX_FEATURE:0cxx_enum_forward_declarations
+    Feature record: CXX_FEATURE:0cxx_explicit_conversions
+    Feature record: CXX_FEATURE:0cxx_extended_friend_declarations
+    Feature record: CXX_FEATURE:0cxx_extern_templates
+    Feature record: CXX_FEATURE:0cxx_final
+    Feature record: CXX_FEATURE:0cxx_func_identifier
+    Feature record: CXX_FEATURE:0cxx_generalized_initializers
+    Feature record: CXX_FEATURE:0cxx_generic_lambdas
+    Feature record: CXX_FEATURE:0cxx_inheriting_constructors
+    Feature record: CXX_FEATURE:0cxx_inline_namespaces
+    Feature record: CXX_FEATURE:0cxx_lambdas
+    Feature record: CXX_FEATURE:0cxx_lambda_init_captures
+    Feature record: CXX_FEATURE:0cxx_local_type_template_args
+    Feature record: CXX_FEATURE:0cxx_long_long_type
+    Feature record: CXX_FEATURE:0cxx_noexcept
+    Feature record: CXX_FEATURE:0cxx_nonstatic_member_init
+    Feature record: CXX_FEATURE:0cxx_nullptr
+    Feature record: CXX_FEATURE:0cxx_override
+    Feature record: CXX_FEATURE:0cxx_range_for
+    Feature record: CXX_FEATURE:0cxx_raw_string_literals
+    Feature record: CXX_FEATURE:0cxx_reference_qualified_functions
+    Feature record: CXX_FEATURE:0cxx_relaxed_constexpr
+    Feature record: CXX_FEATURE:0cxx_return_type_deduction
+    Feature record: CXX_FEATURE:0cxx_right_angle_brackets
+    Feature record: CXX_FEATURE:0cxx_rvalue_references
+    Feature record: CXX_FEATURE:0cxx_sizeof_member
+    Feature record: CXX_FEATURE:0cxx_static_assert
+    Feature record: CXX_FEATURE:0cxx_strong_enums
+    Feature record: CXX_FEATURE:1cxx_template_template_parameters
+    Feature record: CXX_FEATURE:0cxx_thread_local
+    Feature record: CXX_FEATURE:0cxx_trailing_return_types
+    Feature record: CXX_FEATURE:0cxx_unicode_literals
+    Feature record: CXX_FEATURE:0cxx_uniform_initialization
+    Feature record: CXX_FEATURE:0cxx_unrestricted_unions
+    Feature record: CXX_FEATURE:0cxx_user_literals
+    Feature record: CXX_FEATURE:0cxx_variable_templates
+    Feature record: CXX_FEATURE:0cxx_variadic_macros
+    Feature record: CXX_FEATURE:0cxx_variadic_templates

@@ -658,7 +658,7 @@ dump_file(webs_t wp, char *filename)
 	}
 
 	extensions = strrchr(filename, '.');
-	if (extensions && strcmp(extensions, ".key") == 0) {
+	if (!get_login_safe() && extensions && strcmp(extensions, ".key") == 0) {
 		return websWrite(wp, "%s", "# !!!This is hidden write-only secret key file!!!\n");
 	}
 
@@ -1192,7 +1192,9 @@ update_variables_ex(int eid, webs_t wp, int argc, char **argv)
 		}
 		else {
 			char group_id[64];
+			char group_id2[64];
 			snprintf(group_id, sizeof(group_id), "%s", websGetVar(wp, "group_id", ""));
+			snprintf(group_id2, sizeof(group_id2), "%s", websGetVar(wp, "group_id2", ""));
 			
 			if (strlen(action_mode) > 0) {
 				if (!strcmp(action_mode, " Add ")) {
@@ -1233,6 +1235,22 @@ update_variables_ex(int eid, webs_t wp, int argc, char **argv)
 						nvram_set_int_temp(group_id, 0);
 						nvram_clr_group_temp(v);
 					}
+
+					if (v->name && nvram_get_int(group_id2) > 0) {
+						restart_needed_bits |= (v->event_mask & ~(EVM_BLOCK_UNSAFE));
+						dbG("group restart_needed_bits: 0x%llx\n", restart_needed_bits);
+#if BOARD_HAS_5G_RADIO
+						if (!strcmp(group_id2, "RBRList") || !strcmp(group_id2, "ACLList"))
+							wl_modified |= WIFI_COMMON_CHANGE_BIT;
+#endif
+						if (!strcmp(group_id2, "rt_RBRList") || !strcmp(group_id2, "rt_ACLList"))
+							rt_modified |= WIFI_COMMON_CHANGE_BIT;
+						
+						nvram_modified = 1;
+						nvram_set_int_temp(group_id2, 0);
+						nvram_clr_group_temp(v);
+					}
+					
 					
 					if (nvram_modified)
 						websWrite(wp, "<script>done_committing();</script>\n");
@@ -1908,6 +1926,77 @@ wan_action_hook(int eid, webs_t wp, int argc, char **argv)
 	return 0;
 }
 
+#if defined (APP_SHADOWSOCKS)
+static int shadowsocks_action_hook(int eid, webs_t wp, int argc, char **argv)
+{
+	int needed_seconds = 3;
+	char *ss_action = websGetVar(wp, "connect_action", "");
+
+	if (!strcmp(ss_action, "Reconnect")) {
+		notify_rc(RCN_RESTART_SHADOWSOCKS);
+	} else if (!strcmp(ss_action, "Update_chnroute")) {
+		notify_rc(RCN_RESTART_CHNROUTE_UPD);
+		needed_seconds = 1;
+	} else if (!strcmp(ss_action, "Reconnect_ss_tunnel")) {
+		notify_rc(RCN_RESTART_SS_TUNNEL);
+	} else if (!strcmp(ss_action, "Update_gfwlist")) {
+		notify_rc(RCN_RESTART_GFWLIST_UPD);
+	}
+	websWrite(wp, "<script>restart_needed_time(%d);</script>\n", needed_seconds);
+	return 0;
+}
+
+static int shadowsocks_status_hook(int eid, webs_t wp, int argc, char **argv)
+{
+	int ss_status_code = pids("ss-redir");
+	websWrite(wp, "function shadowsocks_status() { return %d;}\n", ss_status_code);
+	int ss_tunnel_status_code = pids("ss-local");
+	websWrite(wp, "function shadowsocks_tunnel_status() { return %d;}\n", ss_tunnel_status_code);
+	return 0;
+}
+
+static int rules_count_hook(int eid, webs_t wp, int argc, char **argv)
+{
+	FILE *fstream = NULL;
+	char count[8];
+	memset(count, 0, sizeof(count));
+	fstream = popen("cat /etc/storage/chinadns/chnroute.txt |wc -l","r");
+	if(fstream) {
+		fgets(count, sizeof(count), fstream);
+		pclose(fstream);
+	} else {
+		sprintf(count, "%d", 0);
+	}
+	if (strlen(count) > 0)
+		count[strlen(count) - 1] = 0;
+	websWrite(wp, "function chnroute_count() { return '%s';}\n", count);
+#if defined(APP_SHADOWSOCKS)
+	memset(count, 0, sizeof(count));
+	fstream = popen("grep ^server /etc/storage/gfwlist/dnsmasq_gfwlist.conf |wc -l","r");
+	if(fstream) {
+		fgets(count, sizeof(count), fstream);
+		pclose(fstream);
+	} else {
+		sprintf(count, "%d", 0);
+	}
+	if (strlen(count) > 0)
+		count[strlen(count) - 1] = 0;
+	websWrite(wp, "function gfwlist_count() { return '%s';}\n", count);	
+#endif
+	return 0;
+}
+
+#endif
+
+#if defined(APP_DNSFORWARDER)
+static int dnsforwarder_status_hook(int eid, webs_t wp, int argc, char **argv)
+{
+	int status_code = pids("dns-forwarder");
+	websWrite(wp, "function dnsforwarder_status() { return %d;}\n", status_code);
+	return 0;
+}
+#endif
+
 static int
 ej_detect_internet_hook(int eid, webs_t wp, int argc, char **argv)
 {
@@ -2062,6 +2151,21 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 #else
 	int found_app_sshd = 0;
 #endif
+#if defined(APP_NAPT66)
+	int found_app_napt66 = 1;
+#else
+	int found_app_napt66 = 0;
+#endif
+#if defined(APP_SHADOWSOCKS)
+	int found_app_shadowsocks = 1;
+#else
+	int found_app_shadowsocks = 0;
+#endif
+#if defined(APP_DNSFORWARDER)
+	int found_app_dnsforwarder = 1;
+#else
+	int found_app_dnsforwarder = 0;
+#endif
 #if defined(APP_XUPNPD)
 	int found_app_xupnpd = 1;
 #else
@@ -2157,10 +2261,32 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 #else
 	int has_btn_mode = 0;
 #endif
-#if defined (USE_WID_5G) && (USE_WID_5G==7610 || USE_WID_5G==7612) && BOARD_HAS_5G_11AC
+#if defined (USE_WID_5G) && (USE_WID_5G==7610 || USE_WID_5G==7612 || USE_WID_5G==7615) && BOARD_HAS_5G_11AC
 	int has_5g_vht = 1;
 #else
 	int has_5g_vht = 0;
+#endif
+#if defined (USE_WID_5G) && USE_WID_5G==7615 && BOARD_HAS_5G_11AC
+	int has_5g_mumimo = 1;
+	int has_5g_txbf = 1;
+	int has_5g_band_steering = 1;
+#if defined (BOARD_MT7615_DBDC)
+	int has_5g_160mhz = 0;
+#else
+	int has_5g_160mhz = 1;
+#endif
+#else
+	int has_5g_mumimo = 0;
+	int has_5g_txbf = 0;
+	int has_5g_band_steering = 0;
+	int has_5g_160mhz = 0;
+#endif
+#if defined (USE_WID_2G) && USE_WID_2G==7615
+	int has_2g_turbo_qam = 1;
+	int has_2g_airtimefairness = 1;
+#else
+	int has_2g_turbo_qam = 0;
+	int has_2g_airtimefairness = 0;
 #endif
 #if defined (USE_WID_2G)
 	int wid_2g = USE_WID_2G;
@@ -2171,6 +2297,16 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 	int wid_5g = USE_WID_5G;
 #else
 	int wid_5g = 0;
+#endif
+#if defined (USE_SFE)
+	int has_sfe = 1;
+#else
+	int has_sfe = 0;
+#endif
+#if defined (BOARD_MT7615_DBDC)
+	int has_lan_ap_isolate = 0;
+#else
+	int has_lan_ap_isolate = 1;
 #endif
 
 	websWrite(wp,
@@ -2188,6 +2324,9 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 		"function found_srv_u2ec() { return %d;}\n"
 		"function found_srv_lprd() { return %d;}\n"
 		"function found_app_sshd() { return %d;}\n"
+		"function found_app_napt66() { return %d;}\n"
+		"function found_app_dnsforwarder() { return %d;}\n"
+		"function found_app_shadowsocks() { return %d;}\n"
 		"function found_app_xupnpd() { return %d;}\n",
 		found_utl_hdparm,
 		found_app_ovpn,
@@ -2203,6 +2342,9 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 		found_srv_u2ec,
 		found_srv_lprd,
 		found_app_sshd,
+		found_app_napt66,
+		found_app_dnsforwarder,
+		found_app_shadowsocks,
 		found_app_xupnpd
 	);
 
@@ -2226,6 +2368,7 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 		"function support_ephy_w1000() { return %d;}\n"
 		"function support_ephy_l1000() { return %d;}\n"
 		"function support_2g_inic_mii() { return %d;}\n"
+		"function support_2g_radio() { return %d;}\n"
 		"function support_5g_radio() { return %d;}\n"
 		"function support_5g_11ac() { return %d;}\n"
 		"function support_5g_wid() { return %d;}\n"
@@ -2233,7 +2376,15 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 		"function support_5g_stream_tx() { return %d;}\n"
 		"function support_5g_stream_rx() { return %d;}\n"
 		"function support_2g_stream_tx() { return %d;}\n"
-		"function support_2g_stream_rx() { return %d;}\n",
+		"function support_2g_stream_rx() { return %d;}\n"
+		"function support_2g_turbo_qam() { return %d;}\n"
+		"function support_2g_airtimefairness() { return %d;}\n"
+		"function support_5g_txbf() { return %d;}\n"
+		"function support_5g_band_steering() { return %d;}\n"
+		"function support_5g_mumimo() { return %d;}\n"
+		"function support_sfe() { return %d;}\n"
+		"function support_lan_ap_isolate() { return %d;}\n"
+		"function support_5g_160mhz() { return %d;}\n",
 		has_ipv6,
 		has_ipv6_ppe,
 		has_ipv4_ppe,
@@ -2253,6 +2404,7 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 		BOARD_HAS_EPHY_W1000,
 		BOARD_HAS_EPHY_L1000,
 		has_inic_mii,
+		BOARD_HAS_2G_RADIO,
 		BOARD_HAS_5G_RADIO,
 		has_5g_vht,
 		wid_5g,
@@ -2260,7 +2412,15 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 		BOARD_NUM_ANT_5G_TX,
 		BOARD_NUM_ANT_5G_RX,
 		BOARD_NUM_ANT_2G_TX,
-		BOARD_NUM_ANT_2G_RX
+		BOARD_NUM_ANT_2G_RX,
+		has_2g_turbo_qam,
+		has_2g_airtimefairness,
+		has_5g_txbf,
+		has_5g_band_steering,
+		has_5g_mumimo,
+		has_sfe,
+		has_lan_ap_isolate,
+		has_5g_160mhz
 	);
 
 	return 0;
@@ -2712,11 +2872,16 @@ void get_wifidata(struct wifi_stats *st, int is_5ghz)
 	}
 	else
 	{
+#if BOARD_HAS_2G_RADIO
 		st->radio = (nvram_get_int("mlme_radio_rt")) ? 1 : 0;
 		if (st->radio)
 			st->ap_guest = is_interface_up(IFNAME_2G_GUEST);
 		else
 			st->ap_guest = 0;
+#else
+		st->radio = 0;
+		st->ap_guest = 0;
+#endif
 	}
 }
 
@@ -3513,6 +3678,7 @@ struct mime_handler mime_handlers[] = {
 #if defined(APP_ARIA)
 	/* cached font */
 	{ "**.woff", "application/font-woff", NULL, NULL, do_file, 0 }, // 2016.01 Volt1
+	{ "**.woff2", "application/font-woff", NULL, NULL, do_file, 0 },
 #endif
 
 	/* cached images */
@@ -3820,6 +3986,14 @@ struct ej_handler ej_handlers[] =
 	{ "delete_sharedfolder", ej_delete_sharedfolder},
 	{ "modify_sharedfolder", ej_modify_sharedfolder},
 	{ "set_share_mode", ej_set_share_mode},
+#endif
+#if defined (APP_SHADOWSOCKS)
+	{ "shadowsocks_action", shadowsocks_action_hook},
+	{ "shadowsocks_status", shadowsocks_status_hook},
+	{ "rules_count", rules_count_hook},
+#endif
+#if defined (APP_DNSFORWARDER)
+	{ "dnsforwarder_status", dnsforwarder_status_hook},
 #endif
 	{ "openssl_util_hook", openssl_util_hook},
 	{ "openvpn_srv_cert_hook", openvpn_srv_cert_hook},

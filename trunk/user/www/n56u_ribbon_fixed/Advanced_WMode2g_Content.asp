@@ -209,7 +209,11 @@ function showLANIPList(){
 
 	if(wds_aplist != ""){
 		for(var i = 0; i < wds_aplist.length ; i++){
-			wds_aplist[i][0] = decodeURIComponent(wds_aplist[i][0]);
+			try {
+				wds_aplist[i][0] = decodeURIComponent(wds_aplist[i][0]);
+			} catch (e) {
+				console.log("malformed utf-8 ssid:"+wds_aplist[i][0]);
+			}
 			if(wds_aplist[i][0] && wds_aplist[i][0].length > 16)
 				show_name = wds_aplist[i][0].substring(0, 14) + "..";
 			else
@@ -273,7 +277,7 @@ function hideClients_Block(){
     <input type="hidden" name="current_page" value="Advanced_WMode2g_Content.asp">
     <input type="hidden" name="next_page" value="">
     <input type="hidden" name="next_host" value="">
-    <input type="hidden" name="sid_list" value="WLANConfig11b;">
+    <input type="hidden" name="sid_list" value="WLANConfig11b;General;">
     <input type="hidden" name="group_id" value="rt_RBRList">
     <input type="hidden" name="action_mode" value="">
     <input type="hidden" name="action_script" value="">

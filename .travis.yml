@@ -1,0 +1,44 @@
+dist: xenial
+
+language: c
+
+compiler:
+    - gcc
+
+env:
+    global:
+      - targets="K2"
+
+before_deploy:
+    - openssl aes-256-cbc -K $encrypted_e15305959cdc_key -iv $encrypted_e15305959cdc_iv -in deploy_key.enc -out deploy_key -d
+    - in .travis/deploy_key.enc -out .travis/deploy_key -d
+    - eval $(ssh-agent -s)
+    - chmod 600 .travis/deploy_key
+    - ssh-add .travis/deploy_key
+
+addons:
+    apt:
+      packages: [ fakeroot, p7zip-full, autoconf, automake, bison, build-essential,
+        flex, gawk, gettext, gperf, libtool, pkg-config, zlib1g-dev, libgmp3-dev,
+        libmpc-dev, libmpfr-dev, texinfo, python-docutils, libncurses5-dev, curl,
+        autopoint, libltdl-dev, cmake ]
+
+before_script:
+    - cp -f ./trunk/tools/travis/* /opt && ./trunk/tools/travis_ci_build_trig.sh
+    - mkdir -p /opt/rt-n56u-jiu/ && mkdir -p /opt/images/
+    - rm -rf toolchain-mipsel/
+    - mv -f * .[^.]* /opt/rt-n56u-jiu
+    - cd /opt/rt-n56u-jiu && git clone --depth=1 https://github.com/896660689/padavan-toolchain.git toolchain-mipsel
+    - chmod u+x ./toolchain-mipsel/toolchain-3.4.x/bin/*
+    - ls -Alh /opt/rt-n56u-jiu && cd /opt/rt-n56u-jiu/trunk/
+
+script:
+    - for m in $targets; do fakeroot sudo ./build_firmware_nohup $m && cp -f images/*.trx /opt/images/$m.trx; ./clear_tree_simple >/dev/null 2>&1; done
+
+after_script:
+    - GIT_VERSION=`git rev-parse --short=7 HEAD 2>/dev/null` && [ -n "$GIT_VERSION" ] && image_name=images_mt7620_$GIT_VERSION || image_name=images_mt7620
+    - cd /opt/images && md5sum *.trx |tee md5sum.txt && 7z a -mx=9 ${image_name}.7z ./*
+    - echo $(curl -# --upload-file ./${image_name}.7z https://transfer.sh/${image_name}.7z)
+
+git:
+    depth: 3

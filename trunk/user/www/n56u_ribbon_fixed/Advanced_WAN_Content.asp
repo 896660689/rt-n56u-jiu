@@ -27,6 +27,7 @@ $j(document).ready(function() {
 	init_itoggle('gw_arp_ping');
 	init_itoggle('x_DHCPClient', change_wan_dhcp_auto);
 	init_itoggle('wan_dnsenable_x', change_wan_dns_auto);
+	init_itoggle('wan_ppp_lcp', change_wan_ppp_lcp_auto);
 	init_itoggle('vlan_filter', change_stb_port_and_vlan);
 });
 
@@ -49,6 +50,10 @@ function initial(){
 
 	if (!support_ipv4_ppe()){
 		showhide_div('row_hwnat', 0);
+	}
+
+	if (support_sfe()){
+		showhide_div('row_sfe', 1);
 	}
 
 	var o1 = document.form.wan_auth_mode;
@@ -85,6 +90,7 @@ function initial(){
 
 	AuthSelection(document.form.wan_auth_mode.value);
 
+	change_wan_ppp_lcp_auto();
 	change_stb_port_and_vlan();
 }
 
@@ -391,6 +397,12 @@ function set_wan_dns_auto(use_auto){
 	showhide_div("row_wan_dns3", !use_auto);
 }
 
+function set_wan_ppp_lcp_auto(use_auto){
+	inputCtrl(document.form.wan_ppp_alcp, use_auto);
+
+	showhide_div("row_ppp_alcp", use_auto);
+}
+
 function set_wan_dhcp_auto(use_auto){
 	inputCtrl(document.form.wan_ipaddr, !use_auto);
 	inputCtrl(document.form.wan_netmask, !use_auto);
@@ -425,6 +437,11 @@ function change_wan_dhcp_auto(){
 function change_wan_dns_auto(use_auto){
 	var v = document.form.wan_dnsenable_x[0].checked;
 	set_wan_dns_auto(v);
+}
+
+function change_wan_ppp_lcp_auto(use_auto){
+	var v = document.form.wan_ppp_lcp[0].checked;
+	set_wan_ppp_lcp_auto(v);
 }
 
 function change_wan_dhcp_enable(wan_type){
@@ -717,6 +734,16 @@ function simplyMAC(fullMAC){
                                                 </select>
                                             </td>
                                         </tr>
+                                        <tr id="row_sfe" style="display:none;">
+                                            <th><#WAN_SFE#></a></th>
+                                            <td>
+                                                <select name="sfe_enable" class="input">
+                                                    <option value="0" <% nvram_match_x("", "sfe_enable", "0", "selected"); %>>Disable</option>
+                                                    <option value="1" <% nvram_match_x("", "sfe_enable", "1", "selected"); %>>Enable for IPv4/IPv6</option>
+                                                    <option value="2" <% nvram_match_x("", "sfe_enable", "2", "selected"); %>>Enable for IPv4/IPv6 and WiFi</option>
+                                                </select>
+                                            </td>
+                                        </tr>
                                         <tr id="row_wan_poller">
                                             <th><#WAN_Poller#></th>
                                             <td>
@@ -911,7 +938,22 @@ function simplyMAC(fullMAC){
                                                 &nbsp;<span style="color:#888;">[1000..1500]</span>
                                             </td>
                                         </tr>
-                                        <tr>
+                                        <tr id="row_ppp_lcp">
+                                            <th><#PPP_LCP#></th>
+                                            <td>
+                                                <div class="main_itoggle">
+                                                    <div id="wan_ppp_lcp_on_of">
+                                                        <input type="checkbox" id="wan_ppp_lcp_fake" <% nvram_match_x("", "wan_ppp_lcp", "1", "value=1 checked"); %><% nvram_match_x("", "wan_ppp_lcp", "0", "value=0"); %>>
+                                                    </div>
+                                                </div>
+
+                                                <div style="position: absolute; margin-left: -10000px;">
+                                                    <input type="radio" name="wan_ppp_lcp" id="wan_ppp_lcp_1" value="1" <% nvram_match_x("", "wan_ppp_lcp", "1", "checked"); %>/><#checkbox_Yes#>
+                                                    <input type="radio" name="wan_ppp_lcp" id="wan_ppp_lcp_0" value="0" <% nvram_match_x("", "wan_ppp_lcp", "0", "checked"); %>/><#checkbox_No#>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr id="row_ppp_alcp">
                                             <th><#PPP_AdaptiveLCP#></th>
                                             <td>
                                                 <label class="radio inline"><input type="radio" value="1" name="wan_ppp_alcp" class="input" <% nvram_match_x("", "wan_ppp_alcp", "1", "checked"); %>><#checkbox_Yes#></label>
@@ -992,7 +1034,7 @@ function simplyMAC(fullMAC){
                                             </td>
                                         </tr>
                                         <tr id="row_vci">
-                                            <th><a class="help_tooltip" href="javascript:void(0);" onmouseover="openTooltip(this,7,19);">Vendor Class Identifier:</a></th>
+                                            <th><a class="help_tooltip" href="javascript:void(0);" onmouseover="openTooltip(this,7,19);"><#Supplier_identification#></a></th>
                                             <td>
                                                 <input type="text" name="wan_vci" class="input" maxlength="128" size="32" value="<% nvram_get_x("","wan_vci"); %>" onkeypress="return is_string(this,event);"/>
                                             </td>

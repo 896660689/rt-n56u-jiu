@@ -4,15 +4,21 @@ mount -t proc proc /proc
 mount -t sysfs sysfs /sys
 [ -d /proc/bus/usb ] && mount -t usbfs usbfs /proc/bus/usb
 
-size_tmp="24M"
+size_tmp="26M"
 size_var="4M"
 if [ "$1" == "-l" ] ; then
 	size_tmp="8M"
 	size_var="1M"
 fi
 
+if [ "$1" == "-b" ] ; then
+	size_etc="10M"
+else
+	size_etc="6M"
+fi
+
 mount -t tmpfs tmpfs /dev   -o size=8K
-mount -t tmpfs tmpfs /etc   -o size=2M,noatime
+mount -t tmpfs tmpfs /etc   -o size=$size_etc,noatime
 mount -t tmpfs tmpfs /home  -o size=1M
 mount -t tmpfs tmpfs /media -o size=8K
 mount -t tmpfs tmpfs /mnt   -o size=8K
@@ -77,6 +83,7 @@ ln -sf /etc_ro/ld.so.conf /etc/ld.so.conf
 # tune linux kernel
 echo 65536        > /proc/sys/fs/file-max
 echo "1024 65535" > /proc/sys/net/ipv4/ip_local_port_range
+ulimit -HSn 65536
 
 # fill storage
 mtd_storage.sh fill

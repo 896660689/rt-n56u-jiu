@@ -83,7 +83,7 @@ static int
 check_header_image(const char *buf, long *file_len)
 {
 	int pid_asus_len;
-	char pid_asus[16];
+	char pid_asus[32];
 	image_header_t *hdr = (image_header_t *)buf;
 
 	/* check header magic */
