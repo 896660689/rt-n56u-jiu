@@ -160,4 +160,38 @@ dir_$(CONFIG_FIRMWARE_INCLUDE_TRANSMISSION)	+= transmission
 dir_$(CONFIG_FIRMWARE_INCLUDE_ARIA)		+= aria2
 endif
 
-ifdef CONFIG_
+ifdef CONFIG_MTD_UBI
+ifneq ($(STORAGE_ENABLED),y)
+dir_y						+= util-linux
+dir_y						+= optware
+endif
+dir_y						+= mtd-utils
+endif
+
+all:
+	for i in $(dir_y) ; do \
+		[ ! -d $$i ] || \
+		$(MAKE) -j1 -C $$i || \
+		exit $$? ; \
+	done
+
+%_only:
+	$(MAKE) -C $(@:_only=)
+
+%_romfs:
+	$(MAKE) -C $(@:_romfs=) romfs
+
+%_clean:
+	$(MAKE) -C $(@:_clean=) clean
+
+romfs:
+	for i in $(dir_y) ; do \
+		[ ! -d $$i ] || \
+		$(MAKE) -C $$i romfs ; \
+	done
+
+clean:
+	for i in `ls -d *` ; do \
+		[ ! -d $$i ] || \
+		$(MAKE) -C $$i clean ; \
+	done
